@@ -10,22 +10,22 @@ String usersToJson(Users data) => json.encode(data.toJson());
 
 class Users {
   Users({
-   required this.empty,
+   required this.users,
   });
 
-  Empty empty;
+  UsersEntity users;
 
   factory Users.fromJson(Map<String, dynamic> json) => Users(
-    empty: Empty.fromJson(json[""]),
+    users: UsersEntity.fromJson(json["users"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "": empty.toJson(),
+    "": users.toJson(),
   };
 }
 
-class Empty {
-  Empty({
+class UsersEntity {
+  UsersEntity({
     this.patientId,
     this.patientName,
     this.patientPhone,
@@ -61,7 +61,7 @@ class Empty {
   String? token;
   List<dynamic>? appointments;
 
-  factory Empty.fromJson(Map<String, dynamic> json) => Empty(
+  factory UsersEntity.fromJson(Map<String, dynamic> json) => UsersEntity(
     patientId: json["patientId"],
     patientName: json["patientName"],
     patientPhone: json["patientPhone"],

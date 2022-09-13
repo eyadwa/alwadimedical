@@ -4,7 +4,15 @@
 
 import 'dart:convert';
 
-Appointment appointmentFromJson(String str) => Appointment.fromJson(json.decode(str));
+Appointment appointmentFromJson(String str){
+  print("Got Response $str");
+  try {
+    var response = json.decode(str);
+    return Appointment.fromJson(response);
+  } catch (e) {
+    return Appointment();
+  }
+}
 
 String appointmentToJson(Appointment data) => json.encode(data.toJson());
 

@@ -160,7 +160,7 @@ class _Login extends State<Login2> {
                     return CustonButton(
                         text: "تسجيل الدخول",
                         onPressed: () {
-                          getDataLogin ("${_controlleruser.text}","${_controllerPassword.text}");
+                          controller.login(_controlleruser.text, _controllerPassword.text);
                         });
                   }
                 ),

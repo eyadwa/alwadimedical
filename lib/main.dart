@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Bindings.dart';
 
-
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initialization(null);
@@ -24,12 +23,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MainController mc = Get.find();
-    return  GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            initialBinding: ControllerBindings(),
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
-            home:mc.isAuth?home():Login());
+
+    mc.isAuth.stream.listen((event) {
+      if (event) {
+        Get.offAll(home());
+      } else {
+        Get.offAll(Login());
+      }
+    });
+
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialBinding: ControllerBindings(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Login(),
+    );
   }
 }

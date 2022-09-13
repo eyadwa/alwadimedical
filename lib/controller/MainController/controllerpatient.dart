@@ -1,8 +1,9 @@
+import 'dart:ffi';
+
 import 'package:centerm/data/model/doctor.dart';
 import 'package:get/get.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-
 import 'package:centerm/data/model/department.dart';
 import 'package:http/http.dart' as http;
 import '';
@@ -23,36 +24,28 @@ class MainController extends GetxController {
   var spacilist = <Specialization>[].obs;
   var DoctorlistApi = <Doctor>[].obs;
   var appointmentList = <AppointmentElement>[].obs;
-  var patientList = <Emptydfdf>[].obs;
-
-
+  var patientEmptyList = <UsersEntity>[].obs;
 
   var isLoadingPatient = true.obs;
   var isLoadingdept = true.obs;
   var isLoadingDoctor = true;
-  var isLoadingAppointment= true.obs;
+  var isLoadingAppointment = true.obs;
   var isLoadingDoctors = true.obs;
   var isLoadingspaci = true.obs;
   var isLoadingpatient = true.obs;
 
-  var isAuth = false;
+  final isAuth = BehaviorSubject<bool>();
 
-
-  Future<void> tryAutoLogin()async{
-    print("saddddddddddddddddddddddddddddddddddddddddddd");
+  Future<void> tryAutoLogin() async {
     final prefs = await SharedPreferences.getInstance();
-    String? _token =  prefs.getString("token");
-    if(_token==null){
-      isAuth =false;
+    String? _token = prefs.getString("token");
+    if (_token == null) {
+      isAuth.add(false);
       //prefs.clear();
+    } else {
+      isAuth.add(true);
     }
-    else {
-      isAuth==true;
-    }
-
   }
-
-
 
   @override
   void onInit() {
@@ -60,7 +53,7 @@ class MainController extends GetxController {
     fetcdept();
     fetcSpeci(iddept);
     fetcDoctor(deptt);
-    fetcappointment(idAppointment,date);
+    fetcappointment(idAppointment, date);
     super.onInit();
   }
 
@@ -95,12 +88,13 @@ class MainController extends GetxController {
     patientlist.refresh();
   }
 
-
-   void AddIdDept (String id) {
-     iddept=  id;
-update();
+  void AddIdDept(String id) {
+    iddept = id;
+    update();
   }
-String iddept="20";
+
+  String iddept = "20";
+
   Future fetcSpeci(String iddept) async {
     try {
       var speci = await Remote_Services_Specializations.fetchspeci(iddept);
@@ -114,45 +108,49 @@ String iddept="20";
     update();
   }
 
-
- static void AddNamedept (String namedeptt) {
-
-   deptt=  namedeptt;
+  static void AddNamedept(String namedeptt) {
+    deptt = namedeptt;
     return print(deptt);
   }
- static String deptt="تقويم الأسنان والفكين";
+
+  static String deptt = "تقويم الأسنان والفكين";
+
   Future fetcDoctor(String dept) async {
-    isLoadingDoctor=true;
+    isLoadingDoctor = true;
     update();
     try {
       var Doctor = await Remote_Services_Doctor.fetchDoctor(dept);
       if (Doctor != null) {
         DoctorlistApi.value = Doctor.doctors;
-        isLoadingDoctor=false;
-    update();
+        isLoadingDoctor = false;
+        update();
       }
     } finally {
-      isLoadingDoctor=false;
+      isLoadingDoctor = false;
       update();
     }
   }
 
-
-  void choisdate (DateTime _date,String idDoctor){
-    idAppointment=idDoctor;
-    date=_date;
+  void choisdate(DateTime _date, String idDoctor) {
+    idAppointment = idDoctor;
+    date = _date;
     update();
   }
-  var date=DateTime.utc(2022,9,8);
 
-  String idAppointment="34";
+  var date = DateTime.utc(2022, 9, 8);
 
+  String idAppointment = "34";
 
-  Future fetcappointment(idAppointment,date) async {
+  Future fetcappointment(idAppointment, date) async {
     try {
-      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(),idAppointment.toString());
+      var Appointment = await Remote_Services_Appointment.fetchAppointment(
+          date.toString(), idAppointment.toString());
       if (Appointment != null) {
-       appointmentList.value = Appointment.appointment!;
+        var appointments = Appointment.appointment != null
+            ? Appointment.appointment!
+            : <AppointmentElement>[];
+
+        appointmentList.value = appointments;
         isLoadingAppointment(false);
       }
     } finally {
@@ -161,25 +159,17 @@ String iddept="20";
     update();
   }
 
-
-
-  Future fetchspatient(String username,String password) async {
+  Future login(String username, String password) async {
     try {
-      var patient = await Remote_patient.fetchPatient(username, password);
+      var patient = await Remote_patient.login(username, password);
       if (patient != null) {
-        patientList.value = patient.empty as List<Empty>;
+        patientEmptyList.value = [patient.users];
         isLoadingPatient(false);
-        isAuth = true;
-        print("ssssssssssssssssssssssssssss");
-        print(isAuth);
+        isAuth.add(true);
       }
     } finally {
       isLoadingPatient(true);
     }
     update();
   }
-  // void signin()
-  // {
-  //   if
-  // }
 }

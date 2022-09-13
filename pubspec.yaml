@@ -41,6 +41,7 @@ dependencies:
   flutter_staggered_grid_view:
   carousel_slider: ^4.1.1
   shared_preferences: ^2.0.15
+  rxdart: ^0.27.5
 #  url_launcher:
 
 
