@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import '../../data/model/Specialization.dart';
+//import '../../data/model/Specialization.dart';
 import '../../data/model/loginmodel.dart';
 
 class Remote_patient {
