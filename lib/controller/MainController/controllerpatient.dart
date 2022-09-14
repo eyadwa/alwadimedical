@@ -1,12 +1,9 @@
-import 'dart:ffi';
 
 import 'package:centerm/data/model/doctor.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:centerm/data/model/department.dart';
-import 'package:http/http.dart' as http;
-import '';
 import '../../data/model/Specialization.dart';
 import '../../data/model/appointment.dart';
 import '../../data/model/loginmodel.dart';
@@ -186,6 +183,13 @@ class MainController extends GetxController {
     }
     update();
   }
-
+  String result="";
+   void Texter (){
+     result ="تم حجز الموعد";
+update();
+   }void deletetext (){
+     result ="";
+update();
+   }
 
 }
