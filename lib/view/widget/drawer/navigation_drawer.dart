@@ -36,7 +36,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const Divider(color: Colors.black, height: 10),
-            BuildMenuItem(text: "info", icon: Icons.info),
+            BuildMenuItem(text: "مواعيدي", icon: Icons.info),
             const SizedBox(height: 10),
             BuildMenuItem(text: "facebook", icon: Icons.facebook),
             const SizedBox(height: 10),
@@ -58,7 +58,9 @@ Widget BuildMenuItem({required String text, required IconData icon}) {
   final color = Colors.white;
   final hoverColor = Colors.white70;
   return ListTile(
-    leading: Icon(icon, color: color),
+    leading: IconButton(onPressed:(){
+
+    },icon: Icon(icon), color: color),
     title: Text(
       text,
       style: TextStyle(color: color),

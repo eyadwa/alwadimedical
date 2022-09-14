@@ -21,6 +21,7 @@ class MainController extends GetxController {
   var spacilist = <Specialization>[].obs;
   var DoctorlistApi = <Doctor>[].obs;
   var appointmentList = <AppointmentElement>[].obs;
+  var AppointmentListAllPatient = <AppointmentElement>[].obs;
   var patientEmptyList = <UsersEntity>[].obs;
 
   var isLoadingPatient = true.obs;
@@ -46,13 +47,13 @@ class MainController extends GetxController {
 
   @override
   void onInit() {
+    fetcAppointmentAllPatient();
     fetcpatient();
     fetcdept();
     fetcSpeci(iddept);
     fetcDoctor(deptt);
     fetcappointment(idAppointment, date);
     login2();
-
     super.onInit();
   }
 
@@ -183,6 +184,35 @@ class MainController extends GetxController {
     }
     update();
   }
+
+
+
+  Future fetcAppointmentAllPatient() async {
+    try {
+      var Appointment = await Remote_Services_Appointment.fetchAppointmentAllPatient();
+      if (Appointment != null) {
+        var appointments = Appointment.appointment != null
+            ? Appointment.appointment!
+            : <AppointmentElement>[];
+        AppointmentListAllPatient.value = appointments;
+        isLoadingAppointment(false);
+      }
+    } finally {
+      isLoadingAppointment(true);
+    }
+    update();
+  }
+
+
+
+
+
+
+
+
+
+
+
   String result="";
    void Texter (){
      result ="تم حجز الموعد";

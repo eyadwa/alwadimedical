@@ -71,7 +71,7 @@ class _home extends State<home> {
             color: ColorApp.white,
             child: ListView(children: [
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 50)),
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
               SizedBox(height: 20),
               ListDepthome(),
               SizedBox(height: 20),
@@ -81,7 +81,7 @@ class _home extends State<home> {
                   width: 200,
                   child: GetBuilder<MainController>(builder: (context) {
                     return Container(
-                        height: 600,
+                        height: 800,
                         width: 200,
                          child: SpecializationWidgetGridView());
                   }),

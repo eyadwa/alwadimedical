@@ -40,20 +40,7 @@ class Appointment_Booking extends StatelessWidget {
                 color: ColorApp.white,
                 child: ListView(children: [
                   SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/image/splashfirst.png",
-                        height: 50,
-                        width: 50,
-                      ),
-                      SizedBox(width: 5),
-                      Text("مركز الوادي الطبي",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ],
-                  ),
+
                   IconButton(
                       onPressed: () {},
                       icon: Icon(Icons.date_range,
@@ -88,7 +75,7 @@ class Appointment_Booking extends StatelessWidget {
                     // decoration: BoxDecoration(border: Border.all(width: 1)),
                     margin: EdgeInsets.all(5),
                     padding: EdgeInsets.all(5),
-                    height: 250,
+                    height: 150,
                     width: double.infinity,
                     child: GridView.builder(
                       itemCount: controller.appointmentList.length,
@@ -117,7 +104,7 @@ class Appointment_Booking extends StatelessWidget {
                   ),
                   SizedBox(height: 2),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 130),
+                    padding: const EdgeInsets.symmetric(horizontal: 120),
                     child: TextFormField(
                       validator: (val) {
                         val = hour_controller!.text;
@@ -136,13 +123,8 @@ class Appointment_Booking extends StatelessWidget {
                           label: Container(
                               margin: EdgeInsets.symmetric(horizontal: 9),
                               child: Text(" ادخل الوقت")),
-                          suffixIcon: hour_controller!.text.isEmpty
-                              ? IconButton(
-                                  icon: Icon(Icons.close),
-                                  onPressed: () {
-                                    hour_controller.clear();
-                                  })
-                              : Container(width: 0),
+                        suffixIcon: hour_controller!.text.isEmpty ?  Container(width: 0) : Container(width: 0)
+                         ,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                           )),
@@ -205,7 +187,21 @@ class Appointment_Booking extends StatelessWidget {
 
                  }
 
-                 )
+                 ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/image/splashfirst.png",
+                        height: 50,
+                        width: 50,
+                      ),
+                      SizedBox(width: 5),
+                      Text("مركز الوادي الطبي",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18)),
+                    ],
+                  ),
                 ]),
               ),
             );

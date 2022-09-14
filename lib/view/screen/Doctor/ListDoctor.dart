@@ -109,7 +109,7 @@ MainController _controller= Get.find();
                                           ),
 
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 100,top: 10),
+                                            padding: const EdgeInsets.only(left: 50,top: 10),
                                             child: Column(
                                               children: [
                                                 Text(controller.DoctorlistApi[index].doctorName!),

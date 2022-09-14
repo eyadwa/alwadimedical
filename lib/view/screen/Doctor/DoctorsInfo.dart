@@ -23,10 +23,10 @@ class DoctorsInfo extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Container(
-                height: 300,
+                height: 250,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: ColorApp.new26 ,
+                  color: ColorApp.new26,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30.0),
                     bottomRight: Radius.circular(30.0),
@@ -45,50 +45,55 @@ class DoctorsInfo extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(3.0),
-                      child: Text("${controller.DoctorlistApi[index!].doctorName}",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-                    ) ,
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("${controller.DoctorlistApi[index!].doctorEmail}"),
-                    )
+                      child: Text(
+                        "${controller.DoctorlistApi[index!].doctorName}",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(3.0),
+                    //   child: Text("${controller.DoctorlistApi[index!].doctorEmail}"),
+                    // )
                   ],
                 ),
               ),
-
-              SizedBox(height: 20),
-              inof("${controller.DoctorlistApi[index!].doctorSpecialization}", "الاختصاص"),
-              inof("${controller.DoctorlistApi[index!].doctorAddrress}", "العنوان"),
+              SizedBox(height: 10),
+              inof("${controller.DoctorlistApi[index!].doctorSpecialization}",
+                  "الاختصاص"),
+              inof("${controller.DoctorlistApi[index!].doctorAddrress}",
+                  "العنوان"),
               inof("${controller.DoctorlistApi[index!].doctorPhone}", "الهاتف"),
-              inof("${controller.DoctorlistApi[index!].workExperience}", "خبرة"),
-
-              SizedBox(height: 50),
+              inof(
+                  "${controller.DoctorlistApi[index!].workExperience}", "خبرة"),
+              SizedBox(height: 25),
               Row(
                 children: <Widget>[
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.to(Appointment_Booking(idDoctorIndex: index!,));
+                        Get.to(Appointment_Booking(idDoctorIndex: index!));
+                        print(index);
                       },
                       child: Container(
+                        height: 55,
                         margin: EdgeInsets.symmetric(horizontal: 50),
                         padding:
-                            EdgeInsets.symmetric(vertical: 24, horizontal: 50),
+                            EdgeInsets.symmetric(vertical: 1, horizontal: 1),
                         decoration: BoxDecoration(
                             color: ColorApp.new26,
                             borderRadius: BorderRadius.circular(20)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Container(
+                            Container(width: 10,height: 10,
                               padding: EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                   color: ColorApp.white,
-                                  borderRadius: BorderRadius.circular(16)),
+                                  borderRadius: BorderRadius.circular(100)),
                               // child: Image.asset("assets/list.png")
                             ),
-                            SizedBox(
-                              width: 16,
-                            ),
+                            SizedBox(width: 5),
                             Container(
                               width: 75,
                               child: Text(
@@ -112,33 +117,26 @@ class DoctorsInfo extends StatelessWidget {
   }
 }
 
- inof(String Var_info,String titles)=>  Container(
-  width: double.infinity,
-  decoration: BoxDecoration( border: Border.all(color: ColorApp.new26)),
-  padding: const EdgeInsets.all(8.0),
-  margin: const EdgeInsets.all(8.0),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text(Var_info,textAlign: TextAlign.start,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))
-      ,SizedBox(width:50)
-      ,Text(titles,textAlign: TextAlign.end,style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
-    ],
-  ),
-);
-
-
-
-
-
-
-
-
-
-
-
-
-
+inof(String Var_info, String titles) => Container(
+      width: double.infinity,
+      decoration: BoxDecoration(border: Border.all(color: ColorApp.new26)),
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(Var_info,
+              textAlign: TextAlign.start,
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+          SizedBox(width: 50),
+          Text(
+            titles,
+            textAlign: TextAlign.end,
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
 
 //
 // class IconTile extends StatelessWidget {

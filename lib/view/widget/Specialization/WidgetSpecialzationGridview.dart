@@ -38,7 +38,7 @@ class SpecializationWidgetGridView extends StatelessWidget {
                       },
                         child: Container(
                           width: 200,
-                          height: 200,
+                          height: 150,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             boxShadow: [
