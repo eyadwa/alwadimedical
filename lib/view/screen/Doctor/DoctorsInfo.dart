@@ -14,6 +14,7 @@ class DoctorsInfo extends StatelessWidget {
   DoctorsInfo(this.index);
 
   int? index;
+  DateTime localDate = DateTime.now();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +67,7 @@ class DoctorsInfo extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.to(Appointment_Booking());
+                        Get.to(Appointment_Booking(idDoctorIndex: index!,));
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 50),

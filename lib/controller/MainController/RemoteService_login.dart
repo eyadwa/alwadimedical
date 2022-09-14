@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-//import '../../data/model/Specialization.dart';
+
 import '../../data/model/loginmodel.dart';
 
 class Remote_patient {
@@ -16,4 +16,18 @@ class Remote_patient {
       return null;
     }
   }
+  static Future<Users?> login2() async {
+    var response = await client.get(Uri.parse(
+        'http://ayaarnous-001-site1.ftempurl.com/api/MobileP/logIn?name=ayaNew123&password=1234'));
+    if (response.statusCode == 200) {
+      var jsonString = response.body;
+      print("Login Response $jsonString");
+      return usersFromJson(jsonString);
+    } else {
+      return null;
+    }
+  }
+
+
+
 }

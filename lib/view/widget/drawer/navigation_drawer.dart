@@ -2,6 +2,7 @@ import 'package:centerm/core/constant/color.dart';
 import 'package:centerm/data/datasource/static.dart';
 import 'package:flutter/material.dart';
 
+import '../../../controller/MainController/controllerpatient.dart';
 import '../../../core/constant/imageasset.dart';
 import '../../screen/patient/usernamepage.dart';
 import '../first screen/widgetbuildHeader.dart';
@@ -12,6 +13,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   final padding = EdgeInsets.symmetric(horizontal: 30);
+  MainController _ConrolllerPatiant =Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {

@@ -1,21 +1,23 @@
-// import 'package:centerm/data/model/patietmmmm.dart';
-// import 'package:http/http.dart' as http;
-//
-// Future<> SignIn(
-// String? DoctorId,
-// String? HourAppoin,
-// String? PatientId,
-// String? date,
-// ) async
-//
-// {
-//   var Base_URL = "http://ayaarnous-001-site1.ftempurl.com";
-//   final url = Uri.parse('$Base_URL/api/MobileP/GetAppoitment?DoctorId=$DoctorId=&HourAppoint=$HourAppoin&PatientId=$PatientId&date=$date');
-//   final response = await http.post(url);
-//   if (response.statusCode == 200) {
-//     print("add new client has been successfully");
-//     final String responseString = response.body;
-//     return addpatientFromJson(responseString);
-//   } else
-//     return null;
-// }
+import 'package:centerm/data/model/patietmmmm.dart';
+import 'package:centerm/view/screen/Doctor/%20AppointmentBooking/postmodel.dart';
+import 'package:http/http.dart' as http;
+
+
+Future<Appointmenttime?> newAppoitment(
+String? IdDoctor,
+String? hour,
+String? IdPatient,
+String? date,) async
+
+
+{
+  var Base_URL = "http://ayaarnous-001-site1.ftempurl.com";
+  final url = Uri.parse('http://ayaarnous-001-site1.ftempurl.com/api/MobileP/GetAppoitment?DoctorId=$IdDoctor&HourAppoint=$hour:00:00&PatientId=$IdPatient&date=$date');
+  final response = await http.post(url);
+  if (response.statusCode == 200) {
+    print("add new Appointment successfully");
+    final String responseString = response.body;
+    return appointmenttimeFromJson(responseString);
+  } else
+    return null;
+}

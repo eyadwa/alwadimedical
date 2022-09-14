@@ -11,7 +11,7 @@ class UserPage extends StatefulWidget {
   @override
   _UserPage createState() => _UserPage();
 }
-
+MainController _controller =Get.find();
 class _UserPage extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class _UserPage extends State<UserPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "رامز توفيق",
+                      "${controller.patientEmptyList[0].patientName}",
                       style: TextStyle(fontSize: 25),
                       textAlign: TextAlign.center,
                     ),
@@ -69,17 +69,17 @@ class _UserPage extends State<UserPage> {
             ),
             SizedBox(height: 30),
             Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-              inof("رامز", Icon(Icons.drive_file_rename_outline)),
+              inof("${controller.patientEmptyList[0].patientName}", Icon(Icons.drive_file_rename_outline)),
               const Divider(color: Colors.black, height: 10),
               SizedBox(
                 height: 10,
               ),
-              inof("0988888", Icon(Icons.phone_android)),
+              inof("${controller.patientEmptyList[0].patientPhone}", Icon(Icons.phone_android)),
               const Divider(color: Colors.black, height: 10),
               SizedBox(
                 height: 10,
               ),
-              inof("2022/8/8", Icon(Icons.date_range)),
+              inof("${controller.patientEmptyList[0].registrationDate}", Icon(Icons.date_range)),
               const Divider(color: Colors.black, height: 10),
               SizedBox(
                 height: 25,

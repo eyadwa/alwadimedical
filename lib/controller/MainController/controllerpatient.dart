@@ -54,9 +54,37 @@ class MainController extends GetxController {
     fetcSpeci(iddept);
     fetcDoctor(deptt);
     fetcappointment(idAppointment, date);
+    login2();
+
     super.onInit();
   }
 
+  Future login(String username, String password) async {
+    try {
+      var patient = await Remote_patient.login(username, password);
+      if (patient != null) {
+        patientEmptyList.value = [patient.users];
+        isLoadingPatient(false);
+        isAuth.add(true);
+      }
+    } finally {
+      isLoadingPatient(true);
+    }
+    update();
+  }
+  Future login2() async {
+    try {
+      var patient = await Remote_patient.login2();
+      if (patient != null) {
+        patientEmptyList.value = [patient.users];
+        isLoadingPatient(false);
+        isAuth.add(true);
+      }
+    } finally {
+      isLoadingPatient(true);
+    }
+    update();
+  }
 
   Future fetcdept() async {
     try {
@@ -159,17 +187,5 @@ class MainController extends GetxController {
     update();
   }
 
-  Future login(String username, String password) async {
-    try {
-      var patient = await Remote_patient.login(username, password);
-      if (patient != null) {
-        patientEmptyList.value = [patient.users];
-        isLoadingPatient(false);
-        isAuth.add(true);
-      }
-    } finally {
-      isLoadingPatient(true);
-    }
-    update();
-  }
+
 }
