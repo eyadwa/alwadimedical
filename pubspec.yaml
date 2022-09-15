@@ -65,6 +65,7 @@ flutter_native_splash:
   ios: true
   android: true
   android_gravity: center
+  color: "#42a5f5"
 #  background_image: assets/image/splashfirst.png
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -93,7 +94,7 @@ flutter:
      - assets/image/photo_three.jpg
      - assets/image/photo_four.jpg
      - assets/image/userphoto.png
-     - assets/image/splashfirst.png
+#     - assets/image/splashfirst.png
      - assets/image/splashtow.png
      - assets/image/photoDoctor1.png
      - assets/image/photoDoctor4.jpg
