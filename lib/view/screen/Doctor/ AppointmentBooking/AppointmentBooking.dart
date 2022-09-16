@@ -140,8 +140,18 @@ class Appointment_Booking extends StatelessWidget {
                             "${controller.DoctorlistApi[idDoctorIndex].doctorId}",
                             "${hour_controller.text}",
                             "${controller.patientEmptyList}",
-                            "${_dateTTime}");
-                        controller.Texter();
+                            "${_dateTTime}");if (
+                        hour_controller.text==09||
+                        hour_controller.text==10||
+                        hour_controller.text==11||
+                        hour_controller.text==12||
+                        hour_controller.text==01||
+                        hour_controller.text==02
+                        ){
+                          controller.Texter();
+                        }
+                       controller.fetcappointment("${_dateTTime}",controller.DoctorlistApi[0].doctorId);
+
                       }else {
                         print("the form contain error");
                       }
