@@ -1,5 +1,6 @@
 
 import 'package:centerm/data/model/doctor.dart';
+import 'package:centerm/data/model/eyad.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,7 @@ import 'RemoteService_login.dart';
 import 'Remote_Service_Doctor.dart';
 import 'Remte_Services_Specialization.dart';
 import 'Reomte_Service_Appointment.dart';
+import 'newRemote_Service_Appoint.dart';
 import 'remoteServices.dart';
 import 'Remote_Services_patient.dart';
 
@@ -21,16 +23,18 @@ class MainController extends GetxController {
   var spacilist = <Specialization>[].obs;
   var DoctorlistApi = <Doctor>[].obs;
   var appointmentList = <AppointmentElement>[].obs;
-  var AppointmentListAllPatient = <AppointmentElement>[].obs;
   var patientEmptyList = <UsersEntity>[].obs;
+  var eyadlist = <eyadeyad>[].obs;
 
   var isLoadingPatient = true.obs;
   var isLoadingdept = true.obs;
   var isLoadingDoctor = true;
   var isLoadingAppointment = true.obs;
+  var isLoadingAppointmentList = true.obs;
   var isLoadingDoctors = true.obs;
   var isLoadingspaci = true.obs;
   var isLoadingpatient = true.obs;
+  var isLoadingApointDate = true.obs;
 
   final isAuth = BehaviorSubject<bool>();
 
@@ -47,7 +51,7 @@ class MainController extends GetxController {
 
   @override
   void onInit() {
-    fetcAppointmentAllPatient();
+    fetceyad();
     fetcpatient();
     fetcdept();
     fetcSpeci(iddept);
@@ -169,12 +173,9 @@ class MainController extends GetxController {
 
   Future fetcappointment(idAppointment, date) async {
     try {
-      var Appointment = await Remote_Services_Appointment.fetchAppointment(
-          date.toString(), idAppointment.toString());
+      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());
       if (Appointment != null) {
-        var appointments = Appointment.appointment != null
-            ? Appointment.appointment!
-            : <AppointmentElement>[];
+        var appointments = Appointment.appointment != null ? Appointment.appointment! : <AppointmentElement>[];
 
         appointmentList.value = appointments;
         isLoadingAppointment(false);
@@ -184,40 +185,34 @@ class MainController extends GetxController {
     }
     update();
   }
-
-
-
-  Future fetcAppointmentAllPatient() async {
+  String result="";
+  Future fetceyad() async {
     try {
-      var Appointment = await Remote_Services_Appointment.fetchAppointmentAllPatient();
-      if (Appointment != null) {
-        var appointments = Appointment.appointment != null
-            ? Appointment.appointment!
-            : <AppointmentElement>[];
-        AppointmentListAllPatient.value = appointments;
-        isLoadingAppointment(false);
+      var data = await Remote_Services_AppointList.fetchAppoint();
+      if (data != null) {
+        eyadlist.value = data.appointments;
+        isLoadingApointDate(false);
+        result ="تم حجز الموعد";
+        update();
+      }else{
+        result="الرجاء تحديد موعد آخر ";
+        update();
       }
     } finally {
-      isLoadingAppointment(true);
+      isLoadingApointDate(false);
+
     }
     update();
+    patientlist.refresh();
   }
 
 
 
-
-
-
-
-
-
-
-
-  String result="";
    void Texter (){
      result ="تم حجز الموعد";
 update();
-   }void deletetext (){
+   }
+   void deletetext (){
      result ="";
 update();
    }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../controller/MainController/controllerpatient.dart';
 import '../../../core/constant/imageasset.dart';
+import '../../screen/patient/DateAppoitmentListPatient.dart';
 import '../../screen/patient/usernamepage.dart';
 import '../first screen/widgetbuildHeader.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const Divider(color: Colors.black, height: 10),
-            BuildMenuItem(text: "مواعيدي", icon: Icons.info),
+            BuildMenuItem(text: "مواعيدي", icon: Icons.info, ),
             const SizedBox(height: 10),
             BuildMenuItem(text: "facebook", icon: Icons.facebook),
             const SizedBox(height: 10),
@@ -54,12 +55,12 @@ class NavigationDrawerWidget extends StatelessWidget {
   }
 }
 
-Widget BuildMenuItem({required String text, required IconData icon}) {
+Widget BuildMenuItem({required String text, required IconData icon,}) {
   final color = Colors.white;
   final hoverColor = Colors.white70;
   return ListTile(
-    leading: IconButton(onPressed:(){
-
+    leading: IconButton(onPressed:() {
+      Get.to(DateAppoitment());
     },icon: Icon(icon), color: color),
     title: Text(
       text,

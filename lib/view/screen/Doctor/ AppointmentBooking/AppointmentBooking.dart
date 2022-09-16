@@ -108,8 +108,8 @@ class Appointment_Booking extends StatelessWidget {
                     child: TextFormField(
                       validator: (val) {
                         val = hour_controller!.text;
-                        if (val.length < 2) {
-                          return 'ادخل الوقت صحيح';
+                        if (val.length != 2) {
+                          return '  ادخل الوقت صحيح مثال 01';
                         } else
                           return null;
                       },
@@ -135,34 +135,16 @@ class Appointment_Booking extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 100),
                     child: MaterialButton(
                       elevation: 25,
-                      onPressed: () {
-                        int i=int.parse(hour_controller.text);
-                      //  if(hour_controller.text.length!=1&& i==9|| i==10|| i==11|| i==12|| i==1|| i==2)
-                          newAppoitment(
+                      onPressed: () {if(formKey.currentState!.validate()){
+                        newAppoitment(
                             "${controller.DoctorlistApi[idDoctorIndex].doctorId}",
                             "${hour_controller.text}",
                             "${controller.patientEmptyList}",
                             "${_dateTTime}");
-                        //print("${controller.appointmentList[0].doctor}");
-                        //   print(_dateTime.toString());
-                        print(_dateTTime.toString());
-                        // controller.choisdate(_dateTTime,controller.appointmentList[0].doctor.toString());
-                        // print("${controller.appointmentList[0].doctor}");
                         controller.Texter();
-                        newAppoitment(
-                            "${controller.DoctorlistApi[idDoctorIndex].doctorId}",
-                            "${hour_controller.text}",
-                            "${controller.patientEmptyList[0].patientId}",
-                            "${_dateTTime}");
-                        //print("${controller.appointmentList[0].doctor}");
-                        //   print(_dateTime.toString());
-                        print(_dateTTime.toString());
-                        // controller.choisdate(_dateTTime,controller.appointmentList[0].doctor.toString());
-                        // print("${controller.appointmentList[0].doctor}");
-                        controller.Texter();
-
-
-
+                      }else {
+                        print("the form contain error");
+                      }
                       },
                       color: ColorApp.new26,
                       child: Text(

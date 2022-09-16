@@ -51,6 +51,7 @@ class DoctorsInfo extends StatelessWidget {
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
                     ),
+
                     // Padding(
                     //   padding: const EdgeInsets.all(3.0),
                     //   child: Text("${controller.DoctorlistApi[index!].doctorEmail}"),
@@ -67,6 +68,7 @@ class DoctorsInfo extends StatelessWidget {
               inof(
                   "${controller.DoctorlistApi[index!].workExperience}", "خبرة"),
               SizedBox(height: 25),
+
               Row(
                 children: <Widget>[
                   Expanded(
