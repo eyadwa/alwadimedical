@@ -52,21 +52,21 @@ class DateAppoitment extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+            SingleChildScrollView(
               child: Container(
-                height: 600,
+                height: 450,
                 width: 200,
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
-                      mainAxisSpacing: 5,
                       crossAxisSpacing: 5,
-                      mainAxisExtent: 100),
+                      mainAxisExtent: 90.0,
+                      childAspectRatio: 4 / 3),
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   itemCount: controller.eyadlist.length,
                   itemBuilder: (context, index) => Container(
                     padding: EdgeInsets.all(2),
-                    margin: EdgeInsets.symmetric(horizontal: 25,vertical: 1),
+                    margin: EdgeInsets.symmetric(horizontal: 25, vertical: 2),
                     height: 100,
                     width: 50,
                     color: Colors.grey,
@@ -85,12 +85,15 @@ class DateAppoitment extends StatelessWidget {
                           Text(
                             "${controller.eyadlist[index].date!.day}",
                             style: TextStyle(color: Colors.black, fontSize: 15),
-                          ), SizedBox(width: 20),Text(
+                          ),
+                          SizedBox(width: 20),
+                          Text(
                             "${controller.eyadlist[index].startTime!.hour}   الساعة ",
                             style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                         ],
-                      ),SizedBox(height: 5),
+                      ),
+                      SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -104,7 +107,8 @@ class DateAppoitment extends StatelessWidget {
                             style: TextStyle(color: Colors.black, fontSize: 12),
                           ),
                         ],
-                      ),SizedBox(height: 5),
+                      ),
+                      SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

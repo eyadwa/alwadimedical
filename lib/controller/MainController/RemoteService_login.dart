@@ -18,7 +18,7 @@ class Remote_patient {
   }
   static Future<Users?> login2() async {
     var response = await client.get(Uri.parse(
-        'http://ayaarnous-001-site1.ftempurl.com/api/MobileP/logIn?name=wafai&password=zxcvbnm'));
+        'http://ayaarnous-001-site1.ftempurl.com/api/MobileP/logIn?name=newPatient12&password=12345'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
       print("Login Response $jsonString");

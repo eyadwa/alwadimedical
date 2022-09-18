@@ -135,21 +135,14 @@ class Appointment_Booking extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 100),
                     child: MaterialButton(
                       elevation: 25,
-                      onPressed: () {if(formKey.currentState!.validate()){
-                        newAppoitment(
-                            "${controller.DoctorlistApi[idDoctorIndex].doctorId}",
+                      onPressed: () {
+                        print(  "${controller.patientEmptyList[0].patientId}");
+                        if(formKey.currentState!.validate()){
+
+                        controller.newAppoitment2("${controller.DoctorlistApi[idDoctorIndex].doctorId}",
                             "${hour_controller.text}",
-                            "${controller.patientEmptyList}",
-                            "${_dateTTime}");if (
-                        hour_controller.text==09||
-                        hour_controller.text==10||
-                        hour_controller.text==11||
-                        hour_controller.text==12||
-                        hour_controller.text==01||
-                        hour_controller.text==02
-                        ){
-                          controller.Texter();
-                        }
+                            "${controller.patientEmptyList[0].patientId}",
+                            "${_dateTTime}");
                        controller.fetcappointment("${_dateTTime}",controller.DoctorlistApi[0].doctorId);
 
                       }else {

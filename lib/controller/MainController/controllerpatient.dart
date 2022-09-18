@@ -1,4 +1,5 @@
 
+import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
 import 'package:centerm/data/model/eyad.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import '../../data/model/Specialization.dart';
 import '../../data/model/appointment.dart';
 import '../../data/model/loginmodel.dart';
 import '../../data/model/model patient.dart';
+import '../../view/screen/Doctor/ AppointmentBooking/PostAppointmentBooking.dart';
 import 'RemoteService_login.dart';
 import 'Remote_Service_Doctor.dart';
 import 'Remte_Services_Specialization.dart';
@@ -26,6 +28,8 @@ class MainController extends GetxController {
   var patientEmptyList = <UsersEntity>[].obs;
   var eyadlist = <eyadeyad>[].obs;
 
+
+  var isLoading = true.obs;
   var isLoadingPatient = true.obs;
   var isLoadingdept = true.obs;
   var isLoadingDoctor = true;
@@ -171,6 +175,8 @@ class MainController extends GetxController {
 
   String idAppointment = "34";
 
+
+
   Future fetcappointment(idAppointment, date) async {
     try {
       var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());
@@ -185,18 +191,21 @@ class MainController extends GetxController {
     }
     update();
   }
-  String result="";
+
+
+
+
+
+
+
+
   Future fetceyad() async {
     try {
       var data = await Remote_Services_AppointList.fetchAppoint();
       if (data != null) {
         eyadlist.value = data.appointments;
+        print(data);
         isLoadingApointDate(false);
-        result ="تم حجز الموعد";
-        update();
-      }else{
-        result="الرجاء تحديد موعد آخر ";
-        update();
       }
     } finally {
       isLoadingApointDate(false);
@@ -206,15 +215,63 @@ class MainController extends GetxController {
     patientlist.refresh();
   }
 
-
-
-   void Texter (){
-     result ="تم حجز الموعد";
-update();
-   }
    void deletetext (){
      result ="";
 update();
    }
+
+
+
+  String result="";
+  Future newAppoitment2(
+      String? IdDoctor,
+      String? hour,
+      String? IdPatient,
+      String? date,) async
+
+  {
+
+    final url = Uri.parse('http://ayaarnous-001-site1.ftempurl.com/api/MobileP/GetAppoitment?DoctorId=$IdDoctor&HourAppoint=$hour:00:00&PatientId=$IdPatient&date=$date');
+    final response = await http.post(url);
+    if (response.statusCode == 200) {
+      print(IdDoctor);
+      print(IdPatient);
+      print("add new Appointment successfully");
+      final String responseString = response.body;
+      print(responseString);
+      String x= '"هذا الموعد محجوز"';
+      String y= '"هذا التوقيت خارج أوقات الدوام"';
+
+      if (responseString== x)
+      {
+        result='"هذا الموعد محجوز"';
+        update();
+
+
+      }else if (responseString==y)
+      {
+        result="هذا التوقيت خارج أوقات الدوام";
+        update();
+      }else{
+        result="تم التسجيل بنجاح";
+        update();
+
+      }
+
+      return result;
+    } else
+      return null;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 }
