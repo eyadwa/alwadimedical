@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../controller/MainController/Auth.dart';
 import '../../../controller/MainController/controllerpatient.dart';
 import '../../../core/constant/color.dart';
 
@@ -27,6 +28,7 @@ class ListDepthome extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
+            Auth().Login_eyad();
                 Controller.AddIdDept("${Controller.deptlist[index].departmentId}");
                 print("${Controller.deptlist[index].departmentId}");
                 Controller.fetcSpeci("${Controller.deptlist[index].departmentId}");

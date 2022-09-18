@@ -70,8 +70,7 @@ class _home extends State<home> {
             width: double.infinity,
             color: ColorApp.white,
             child: ListView(children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
               SizedBox(height: 20),
               ListDepthome(),
               SizedBox(height: 20),
