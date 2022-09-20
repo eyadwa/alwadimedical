@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'PostAppointmentBooking.dart';
-
 class Appointment_Booking extends StatelessWidget {
-  Appointment_Booking({Key? key, required this.idDoctorIndex})
+  Appointment_Booking({Key? key, required this.idDoctorIndex,required this.idDoctor})
       : super(key: key);
   int idDoctorIndex;
+  String idDoctor;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,21 @@ class Appointment_Booking extends StatelessWidget {
     var _dateTTime = DateTime.utc(2022, 9, 8);
     final TextEditingController? hour_controller = TextEditingController();
     final formKey = GlobalKey<FormState>();
-
-    void _showDatePicker() {
+MainController _controller= Get.find();    void _showDatePicker() {
       showDatePicker(
               context: context,
               initialDate: DateTime.now(),
               firstDate: DateTime(2022),
               lastDate: DateTime(2023))
           .then((value) => _dateTTime = value!);
+
+
+   _controller.fetcappointment(idDoctorIndex , _dateTTime);
+
+print(idDoctorIndex);
+print(idDoctor);
+
+
     }
 
     return DefaultTabController(
@@ -40,7 +46,6 @@ class Appointment_Booking extends StatelessWidget {
                 color: ColorApp.white,
                 child: ListView(children: [
                   SizedBox(height: 40),
-
                   IconButton(
                       onPressed: () {},
                       icon: Icon(Icons.date_range,
@@ -50,7 +55,8 @@ class Appointment_Booking extends StatelessWidget {
                     padding:
                         EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                     child: MaterialButton(
-                      onPressed: _showDatePicker,
+                      onPressed: _showDatePicker
+                      ,
                       padding: EdgeInsets.all(10),
                       color: ColorApp.new26,
                       elevation: 25,

@@ -1,4 +1,6 @@
 
+// import 'dart:html';
+
 import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
 import 'package:centerm/data/model/eyad.dart';
@@ -10,7 +12,6 @@ import '../../data/model/Specialization.dart';
 import '../../data/model/appointment.dart';
 import '../../data/model/loginmodel.dart';
 import '../../data/model/model patient.dart';
-import '../../view/screen/Doctor/ AppointmentBooking/PostAppointmentBooking.dart';
 import 'RemoteService_login.dart';
 import 'Remote_Service_Doctor.dart';
 import 'Remte_Services_Specialization.dart';
@@ -60,7 +61,7 @@ class MainController extends GetxController {
     fetcdept();
     fetcSpeci(iddept);
     fetcDoctor(deptt);
-    fetcappointment(idAppointment, date);
+   fetcappointment(idAppointment, date);
     login2();
     super.onInit();
   }
@@ -171,9 +172,9 @@ class MainController extends GetxController {
     update();
   }
 
-  var date = DateTime.utc(2022, 9, 8);
+  var date = DateTime.utc(2022, 9, 20);
 
-  String idAppointment = "34";
+  String idAppointment = "35";
 
 
 
@@ -185,6 +186,7 @@ class MainController extends GetxController {
 
         appointmentList.value = appointments;
         isLoadingAppointment(false);
+        update();
       }
     } finally {
       isLoadingAppointment(true);
@@ -195,16 +197,11 @@ class MainController extends GetxController {
 
 
 
-
-
-
-
   Future fetceyad() async {
     try {
       var data = await Remote_Services_AppointList.fetchAppoint();
       if (data != null) {
         eyadlist.value = data.appointments;
-        print(data);
         isLoadingApointDate(false);
       }
     } finally {
@@ -238,7 +235,6 @@ update();
       print(IdPatient);
       print("add new Appointment successfully");
       final String responseString = response.body;
-      print(responseString);
       String x= '"هذا الموعد محجوز"';
       String y= '"هذا التوقيت خارج أوقات الدوام"';
 
@@ -263,7 +259,30 @@ update();
       return null;
   }
 
-
+  // Future<void> _openFacebook() async {
+  //   String fbProtocolUrl;
+  //   if (Platform.isIOS) {
+  //     fbProtocolUrl = 'fb://profile/{your-page-id}';
+  //   } else {
+  //     fbProtocolUrl = 'fb://page/{your-page-id}';
+  //   }
+  //
+  //   String fallbackUrl = 'https://www.facebook.com/{your-page-uri}';
+  //
+  //   try {
+  //     Uri fbBundleUri = Uri.parse(fbProtocolUrl);
+  //     var canLaunchNatively = await canLaunchUrl(fbBundleUri);
+  //
+  //     if (canLaunchNatively) {
+  //       launchUrl(fbBundleUri);
+  //     } else {
+  //       await launchUrl(Uri.parse(fallbackUrl),
+  //           mode: LaunchMode.externalApplication);
+  //     }
+  //   } catch (e, st) {
+  //     // Handle this as you prefer
+  //   }
+  // }
 
 
 

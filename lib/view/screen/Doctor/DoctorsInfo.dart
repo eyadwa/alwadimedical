@@ -74,8 +74,7 @@ class DoctorsInfo extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        Get.to(Appointment_Booking(idDoctorIndex: index!));
-                        print(index);
+                        Get.to(Appointment_Booking(idDoctorIndex: index!,idDoctor: controller.DoctorlistApi[index!].doctorId.toString(),));
                       },
                       child: Container(
                         height: 55,
