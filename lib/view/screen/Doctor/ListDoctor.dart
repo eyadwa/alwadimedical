@@ -10,7 +10,7 @@ class DoctorsSp extends StatelessWidget {
   TextEditingController? _searchController;
 
   MainController _controller = Get.find();
-
+ScrollController scrolleController=ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class DoctorsSp extends StatelessWidget {
               // color: ColorApp.white,
               child: ListView(
                 children: [
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 25),
@@ -65,6 +65,7 @@ class DoctorsSp extends StatelessWidget {
                         margin:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                         child: ListView.builder(
+                          controller: scrolleController,
                             itemCount: controller.DoctorlistApi.length,
                             itemBuilder: (context, index) {
                               return InkWell(
@@ -73,23 +74,23 @@ class DoctorsSp extends StatelessWidget {
                                 },
                                 child: Container(
                                   width: 200,
-                                  height: 150,
+                                  height: 130,
                                   padding: EdgeInsets.all(10),
                                   margin: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 5),
                                   child: Container(
-                                    height: 100,
+                                    height: 75,
                                     width: 150,
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
-                                      color: ColorApp.new28,
+                                      color: ColorApp.white,
                                       boxShadow: [
                                         BoxShadow(
-                                          color: ColorApp.nexpurple,
+                                          color: Colors.black26,
                                           spreadRadius: 0.01,
-                                          blurRadius:100,
+                                          blurRadius:1,
                                           offset: Offset(0, 5), // changes position of shadow
                                         ),
                                       ],
@@ -112,12 +113,13 @@ class DoctorsSp extends StatelessWidget {
                                                   // height: 150,
                                                 ),
                                               ),
-                                            ),
-                                            Padding(padding: const EdgeInsets.only(left: 50, top: 10),
+                                            ),Spacer(),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 1, top: 1),
                                               child: Column(
                                                 children: [
                                                   Text(controller.DoctorlistApi[index].doctorName!,style: TextStyle(fontSize: 25,fontWeight: FontWeight.w100),),
-                                                  SizedBox(height: 10),
+                                                  SizedBox(height: 3),
                                                   Text("${controller.DoctorlistApi[index].doctorCertificate}",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w100)),
                                                 ],
                                               ),

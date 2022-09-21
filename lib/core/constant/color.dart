@@ -20,7 +20,7 @@ class ColorApp {
   static const blue22= Color(0xFF018FDB);
   static const new22= Color(0xFFA14AD0);
   static const new24= Color(0xFFCE1BFF);
-  static const new26= Color(0xFF572163);
+  static const new26= Color(0xFF7D007D);
   static const new28= Color(0xbfe5adf5);
 
 

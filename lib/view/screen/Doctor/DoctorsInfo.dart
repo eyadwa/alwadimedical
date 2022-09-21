@@ -59,15 +59,13 @@ class DoctorsInfo extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-              inof("${controller.DoctorlistApi[index!].doctorSpecialization}",
-                  "الاختصاص"),
-              inof("${controller.DoctorlistApi[index!].doctorAddrress}",
-                  "العنوان"),
-              inof("${controller.DoctorlistApi[index!].doctorPhone}", "الهاتف"),
-              inof(
-                  "${controller.DoctorlistApi[index!].workExperience}", "خبرة"),
               SizedBox(height: 25),
+              inof("${controller.DoctorlistApi[index!].doctorSpecialization}", "الاختصاص"),
+              inof("${controller.DoctorlistApi[index!].doctorAddrress}", "العنوان"),
+              inof("${controller.DoctorlistApi[index!].doctorPhone}", "الهاتف"),
+              inof("${controller.DoctorlistApi[index!].workExperience}", "الخبرة"),
+              inof("${controller.DoctorlistApi[index!].doctorEmail}", "ايميل"),
+              Spacer(),
 
               Row(
                 children: <Widget>[
@@ -77,8 +75,8 @@ class DoctorsInfo extends StatelessWidget {
                         Get.to(Appointment_Booking(idDoctorIndex: index!,idDoctor: controller.DoctorlistApi[index!].doctorId.toString(),));
                       },
                       child: Container(
-                        height: 55,
-                        margin: EdgeInsets.symmetric(horizontal: 50),
+                        height: 45,
+                        margin: EdgeInsets.symmetric(horizontal: 90),
                         padding:
                             EdgeInsets.symmetric(vertical: 1, horizontal: 1),
                         decoration: BoxDecoration(
@@ -88,13 +86,13 @@ class DoctorsInfo extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Container(width: 10,height: 10,
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(1),
                               decoration: BoxDecoration(
                                   color: ColorApp.white,
                                   borderRadius: BorderRadius.circular(100)),
                               // child: Image.asset("assets/list.png")
                             ),
-                            SizedBox(width: 5),
+                            SizedBox(width: 2),
                             Container(
                               width: 75,
                               child: Text(
@@ -109,7 +107,8 @@ class DoctorsInfo extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+              Spacer()
             ],
           ),
         ),
@@ -120,16 +119,21 @@ class DoctorsInfo extends StatelessWidget {
 
 inof(String Var_info, String titles) => Container(
       width: double.infinity,
-      decoration: BoxDecoration(border: Border.all(color: ColorApp.new26)),
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(8.0),
+      // decoration:
+      // BoxDecoration(
+      //     border: Border.fromBorderSide(BorderSide().bottom,color: ColorApp.new26)),
+      padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 3),
+      // margin: const EdgeInsets.all(8.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(Var_info,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [Text(Var_info,
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          SizedBox(width: 50),
+          Column(
+          children: [
+
+        ],),
+          SizedBox(width: 25),
           Text(
             titles,
             textAlign: TextAlign.end,

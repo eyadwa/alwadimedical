@@ -1,9 +1,6 @@
 import 'package:centerm/core/constant/color.dart';
-import 'package:centerm/data/datasource/static.dart';
 import 'package:flutter/material.dart';
-
 import '../../../controller/MainController/controllerpatient.dart';
-import '../../../core/constant/imageasset.dart';
 import '../../screen/patient/DateAppoitmentListPatient.dart';
 import '../../screen/patient/usernamepage.dart';
 import '../first screen/widgetbuildHeader.dart';
@@ -14,17 +11,17 @@ class NavigationDrawerWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   final padding = EdgeInsets.symmetric(horizontal: 30);
-  MainController _ConrolllerPatiant =Get.put(MainController());
+  MainController _ConrolllerPatiant = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
-
     return Drawer(
       child: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-               ColorApp.purple40 ,ColorApp.new26,
+              ColorApp.purple40,
+              ColorApp.new26,
             ],
             end: Alignment.centerLeft,
             begin: Alignment.centerRight,
@@ -37,7 +34,11 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const Divider(color: Colors.black, height: 10),
-            BuildMenuItem(text: "مواعيدي", icon: Icons.info, ),
+            BuildMenuItem(
+              text: "مواعيدي",
+              icon: Icons.info,
+
+            ),
             const SizedBox(height: 10),
             BuildMenuItem(text: "facebook", icon: Icons.facebook),
             const SizedBox(height: 10),
@@ -55,18 +56,30 @@ class NavigationDrawerWidget extends StatelessWidget {
   }
 }
 
-Widget BuildMenuItem({required String text, required IconData icon,}) {
+Widget BuildMenuItem({
+  required String text,
+  required IconData icon,
+}) {
   final color = Colors.white;
   final hoverColor = Colors.white70;
-  return ListTile(
-    leading: IconButton(onPressed:() {
-      Get.to(DateAppoitment());
-    },icon: Icon(icon), color: color),
-    title: Text(
-      text,
-      style: TextStyle(color: color),
+  return GestureDetector( onTap: (){
+  },
+    child: Container(
+      child: ListTile(
+        leading: IconButton(
+            onPressed: () {
+               Get.to(DateAppoitment());
+
+            },
+            icon: Icon(icon),
+            color: color),
+        title: Text(
+          text,
+          style: TextStyle(color: color),
+        ),
+        hoverColor: hoverColor,
+        onTap: () {   Get.to(DateAppoitment());},
+      ),
     ),
-    hoverColor: hoverColor,
-    onTap: () {},
   );
 }

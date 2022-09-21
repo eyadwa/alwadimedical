@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
 import 'package:centerm/data/model/eyad.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:centerm/data/model/department.dart';
@@ -61,7 +62,8 @@ class MainController extends GetxController {
     fetcdept();
     fetcSpeci(iddept);
     fetcDoctor(deptt);
-   fetcappointment(idAppointment, date);
+   // fetcappointment(idAppointment, date);
+    eyadapointment(idAppointment, date);
     login2();
     super.onInit();
   }
@@ -166,9 +168,13 @@ class MainController extends GetxController {
     }
   }
 
-  void choisdate(DateTime _date, String idDoctor) {
+  void choisdate( _date, String idDoctor) {
     idAppointment = idDoctor;
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String formatted = formatter.format(_date);
+
     date = _date;
+
     update();
   }
 
@@ -179,14 +185,44 @@ class MainController extends GetxController {
 
 
   Future fetcappointment(idAppointment, date) async {
-    try {
-      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());
+    try {  update();
+      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());  update();
       if (Appointment != null) {
+
         var appointments = Appointment.appointment != null ? Appointment.appointment! : <AppointmentElement>[];
+            print(date);
+            print(idAppointment);
 
         appointmentList.value = appointments;
+        update();
         isLoadingAppointment(false);
         update();
+
+      }else{
+        print("hhhhhh");
+      }
+    } finally {
+      isLoadingAppointment(true);
+    }
+    update();
+  }
+
+  Future eyadapointment(idAppointment, date) async {
+    try {
+      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());  update();
+      if (Appointment != null) {
+
+        print(date);
+        print(idAppointment);
+
+        appointmentList.value = Appointment.appointment!;
+        update();
+
+        isLoadingAppointment(false);
+        update();
+
+      }else{
+        print("hhhhhhhhhhhhhhhhhhh");
       }
     } finally {
       isLoadingAppointment(true);

@@ -109,6 +109,16 @@ print(idDoctor);
                     ),
                   ),
                   SizedBox(height: 2),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 50),
+                  //   child: MaterialButton(onPressed: (){
+                  //     controller.eyadapointment(_dateTTime,"35");
+                  //     controller.choisdate(_dateTTime,"${controller.DoctorlistApi[0].doctorId}");
+                  //   },
+                  //     color: Colors.black,
+                  //
+                  //     height: 30,),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
                     child: TextFormField(
@@ -149,7 +159,7 @@ print(idDoctor);
                             "${hour_controller.text}",
                             "${controller.patientEmptyList[0].patientId}",
                             "${_dateTTime}");
-                       controller.fetcappointment("${_dateTTime}",controller.DoctorlistApi[0].doctorId);
+                   //    controller.fetcappointment("${_dateTTime}",controller.DoctorlistApi[0].doctorId);
 
                       }else {
                         print("the form contain error");

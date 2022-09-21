@@ -54,6 +54,7 @@ class DateAppoitment extends StatelessWidget {
                           style: TextStyle(fontSize: 20)),
                       SizedBox(width: 2),
                       Text("${_datenow.day}", style: TextStyle(fontSize: 20)),
+
                     ],
                   )
                 ],
@@ -119,7 +120,7 @@ class DateAppoitment extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "${controller.DoctorlistApi[0].doctorSpecialization}",
+                          "${controller.eyadlist[0].doctorNavigation?.doctorSpecialization}",
                           style: TextStyle(color: Colors.black, fontSize: 12),
                         ),
                         SizedBox(width: 20),
