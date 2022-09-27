@@ -35,7 +35,7 @@ if (response.statusCode==200){
   _prefereces!.setString("token", "${tokenAuth}");
 }else
   {
-    print("ssssssssssss");
+
   }
   }
 }

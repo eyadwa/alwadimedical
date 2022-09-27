@@ -11,7 +11,6 @@ class Remote_Services_Appointment {
     if (response.statusCode == 200) {
 
       var jsonString = response.body;
-      print(jsonString);
       return appointmentFromJson(jsonString);
     } else {
       return null;

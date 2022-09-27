@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:centerm/controller/MainController/controllerpatient.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../core/constant/color.dart';
 import 'DoctorsInfo.dart';
 
@@ -10,7 +11,8 @@ class DoctorsSp extends StatelessWidget {
   TextEditingController? _searchController;
 
   MainController _controller = Get.find();
-ScrollController scrolleController=ScrollController();
+  ScrollController scrolleController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +25,24 @@ ScrollController scrolleController=ScrollController();
               // color: ColorApp.white,
               child: ListView(
                 children: [
-                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/image/splashfirst.png",
+                        height: 50,
+                        width: 50,
+                      ),
+                      SizedBox(width: 5),
+                      Text("مركز الوادي الطبي",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18)),
+                    ],
+                  ),
+                  SizedBox(height: 1),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 25),
+                        horizontal: 25, vertical: 1),
                     child: TextFormField(
                       textAlign: TextAlign.right,
                       controller: _searchController,
@@ -60,21 +76,25 @@ ScrollController scrolleController=ScrollController();
                     } else {
                       return Container(
                         width: 200,
-                        height: 500,
+                        height: 800,
                         padding: EdgeInsets.all(10),
                         margin:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                         child: ListView.builder(
-                          controller: scrolleController,
+                            controller: scrolleController,
                             itemCount: controller.DoctorlistApi.length,
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: () {
-                                  Get.to(DoctorsInfo(index));
+                                  Get.to(DoctorsInfo(index)
+                                  );
+var datenow=DateTime.now();
+                                  var d=DateFormat('yyyy-MM-dd').format(datenow);
+                                 controller.ListAppointDoctorApi(d.toString(),"${controller.DoctorlistApi[index].doctorId!}") ;
                                 },
                                 child: Container(
                                   width: 200,
-                                  height: 130,
+                                  height: 325,
                                   padding: EdgeInsets.all(10),
                                   margin: EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 5),
@@ -84,46 +104,51 @@ ScrollController scrolleController=ScrollController();
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(50),
                                       color: ColorApp.white,
                                       boxShadow: [
                                         BoxShadow(
                                           color: Colors.black26,
-                                          spreadRadius: 0.01,
-                                          blurRadius:1,
-                                          offset: Offset(0, 5), // changes position of shadow
+                                          spreadRadius: 10,
+                                          blurRadius: 1,
+                                          offset: Offset(0,
+                                              5), // changes position of shadow
                                         ),
                                       ],
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        Row(
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(60),
+                                              topLeft: Radius.circular(60),
+                                              bottomRight: Radius.circular(100),
+                                              bottomLeft: Radius.circular(100)),
+                                          child: Image.memory(
+                                            base64Decode(controller
+                                                .DoctorlistApi[index]
+                                                .doctorImg!),
+                                            width: 300,
+                                          ),
+                                        ),
+                                        Column(
                                           children: [
-                                            ClipOval(
-                                              child: SizedBox.fromSize(
-                                                size: Size.fromRadius(40),
-                                                // Image radius
-                                                child: Image.memory(
-                                                  base64Decode(controller
-                                                      .DoctorlistApi[index]
-                                                      .doctorImg!),
-                                                  // width: 150,
-                                                  // height: 150,
-                                                ),
-                                              ),
-                                            ),Spacer(),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 1, top: 1),
-                                              child: Column(
-                                                children: [
-                                                  Text(controller.DoctorlistApi[index].doctorName!,style: TextStyle(fontSize: 25,fontWeight: FontWeight.w100),),
-                                                  SizedBox(height: 3),
-                                                  Text("${controller.DoctorlistApi[index].doctorCertificate}",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w100)),
-                                                ],
-                                              ),
-                                            )
+                                            Text(
+                                             " د."+" "+ controller.DoctorlistApi[index]
+                                                  .doctorName!,
+                                              style: TextStyle(
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(height: 3),
+                                            Text(
+                                                "${controller.DoctorlistApi[index].doctorCertificate}",
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.w100)),
                                           ],
                                         ),
                                       ],
@@ -135,20 +160,20 @@ ScrollController scrolleController=ScrollController();
                       );
                     }
                   }),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/image/splashfirst.png",
-                        height: 50,
-                        width: 50,
-                      ),
-                      SizedBox(width: 5),
-                      Text("مركز الوادي الطبي",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Image.asset(
+                  //       "assets/image/splashfirst.png",
+                  //       height: 50,
+                  //       width: 50,
+                  //     ),
+                  //     SizedBox(width: 5),
+                  //     Text("مركز الوادي الطبي",
+                  //         style: TextStyle(
+                  //             fontWeight: FontWeight.bold, fontSize: 18)),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

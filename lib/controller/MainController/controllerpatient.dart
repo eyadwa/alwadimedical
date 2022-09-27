@@ -1,6 +1,7 @@
 
 // import 'dart:html';
 
+import 'package:centerm/data/model/ListAppointmentDoctor.dart';
 import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
 import 'package:centerm/data/model/eyad.dart';
@@ -13,6 +14,7 @@ import '../../data/model/Specialization.dart';
 import '../../data/model/appointment.dart';
 import '../../data/model/loginmodel.dart';
 import '../../data/model/model patient.dart';
+import 'ListAppointmentDoctorController.dart';
 import 'RemoteService_login.dart';
 import 'Remote_Service_Doctor.dart';
 import 'Remte_Services_Specialization.dart';
@@ -30,6 +32,7 @@ class MainController extends GetxController {
   var patientEmptyList = <UsersEntity>[].obs;
   var eyadlist = <eyadeyad>[].obs;
 
+  var listAppoint = <ListAppointDoctor>[].obs;
 
   var isLoading = true.obs;
   var isLoadingPatient = true.obs;
@@ -57,6 +60,7 @@ class MainController extends GetxController {
 
   @override
   void onInit() {
+
     fetceyad();
     fetcpatient();
     fetcdept();
@@ -102,7 +106,7 @@ class MainController extends GetxController {
         deptlist.value = product.departments;
 
         isLoadingdept(false);
-        // print (product);
+
       }
     } finally {
       isLoadingdept(false);
@@ -190,8 +194,7 @@ class MainController extends GetxController {
       if (Appointment != null) {
 
         var appointments = Appointment.appointment != null ? Appointment.appointment! : <AppointmentElement>[];
-            print(date);
-            print(idAppointment);
+
 
         appointmentList.value = appointments;
         update();
@@ -199,7 +202,7 @@ class MainController extends GetxController {
         update();
 
       }else{
-        print("hhhhhh");
+
       }
     } finally {
       isLoadingAppointment(true);
@@ -212,17 +215,15 @@ class MainController extends GetxController {
       var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());  update();
       if (Appointment != null) {
 
-        print(date);
-        print(idAppointment);
-
         appointmentList.value = Appointment.appointment!;
+
         update();
 
         isLoadingAppointment(false);
         update();
 
       }else{
-        print("hhhhhhhhhhhhhhhhhhh");
+
       }
     } finally {
       isLoadingAppointment(true);
@@ -239,6 +240,26 @@ class MainController extends GetxController {
       if (data != null) {
         eyadlist.value = data.appointments;
         isLoadingApointDate(false);
+      }
+    } finally {
+      isLoadingApointDate(false);
+
+    }
+    update();
+    patientlist.refresh();
+  }
+
+
+
+
+  Future ListAppointDoctorApi (String date, String id) async {
+    try {
+      var dataer = await Remote_Services_AppointListDoctor.fetchAppoint( id,date);
+      if (dataer != null) {
+
+        listAppoint.value=dataer;
+        isLoadingApointDate(false);
+        update();
       }
     } finally {
       isLoadingApointDate(false);
@@ -267,9 +288,7 @@ update();
     final url = Uri.parse('http://ayaarnous-001-site1.ftempurl.com/api/MobileP/GetAppoitment?DoctorId=$IdDoctor&HourAppoint=$hour:00:00&PatientId=$IdPatient&date=$date');
     final response = await http.post(url);
     if (response.statusCode == 200) {
-      print(IdDoctor);
-      print(IdPatient);
-      print("add new Appointment successfully");
+
       final String responseString = response.body;
       String x= '"هذا الموعد محجوز"';
       String y= '"هذا التوقيت خارج أوقات الدوام"';

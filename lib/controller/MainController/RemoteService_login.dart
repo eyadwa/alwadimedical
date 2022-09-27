@@ -21,7 +21,6 @@ class Remote_patient {
         'http://ayaarnous-001-site1.ftempurl.com/api/MobileP/logIn?name=newPatient12&password=12345'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
-      print("Login Response $jsonString");
       return usersFromJson(jsonString);
     } else {
       return null;
