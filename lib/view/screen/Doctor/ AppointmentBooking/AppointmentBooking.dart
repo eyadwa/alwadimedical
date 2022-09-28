@@ -29,11 +29,12 @@ class Appointment_Booking extends StatelessWidget {
               lastDate: DateTime(2023))
           .then((value) => _dateTTime = value!);
 
-       //_controller.fetcappointment(idDoctorIndex, _dateTTime);
+      //_controller.fetcappointment(idDoctorIndex, _dateTTime);
 //print (_dateTTime);
-var d=DateFormat('yyyy-MM-dd').format(_dateTTime);
-print(d);
-      _controller.ListAppointDoctorApi(d,"${_controller.DoctorlistApi[idDoctorIndex].doctorId}");
+      var d = DateFormat('yyyy-MM-dd').format(_dateTTime);
+      print(d);
+      _controller.ListAppointDoctorApi(
+          d, "${_controller.DoctorlistApi[idDoctorIndex].doctorId}");
     }
 
     return DefaultTabController(
@@ -113,6 +114,10 @@ print(d);
                           height: 50,
                           margin: EdgeInsets.all(1),
                           decoration: BoxDecoration(
+                              color: controller.listAppoint[index].isReversed ==
+                                      false
+                                  ? ColorApp.white
+                                  : Colors.grey,
                               border: Border.all(
                                   width: 1.5,
                                   color: controller
@@ -123,8 +128,8 @@ print(d);
                               borderRadius:
                                   BorderRadius.all(Radius.circular(8))),
                           child: Center(
-                            child: (Text(
-                                "${controller.listAppoint[index].startTime!.hour}:${controller.listAppoint[index].startTime!.minute}")),
+                            child: (controller.listAppoint[index].isReversed==false?Text(
+                                "${controller.listAppoint[index].startTime!.hour}:${controller.listAppoint[index].startTime!.minute}"):Text("محجوز")),
                           ),
                         ),
                       ),
@@ -174,7 +179,8 @@ print(d);
                     child: MaterialButton(
                       elevation: 25,
                       onPressed: () {
-                        Get.to(home());
+                        showAlertDialog(context);
+                        //Get.to(home());
                         // print(  "${controller.patientEmptyList[0].patientId}");
                         //   if(formKey.currentState!.validate()){
                         //
@@ -206,6 +212,37 @@ print(d);
       ),
     );
   }
+  showAlertDialog(BuildContext context) {
+
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("تأكيد",textAlign: TextAlign.start,),
+      onPressed: () { },
+    );
+    Widget cancleButton = TextButton(
+      child: Text("إلغاء",textAlign: TextAlign.start),
+      onPressed: () { },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("تاكيد الحجز",textAlign: TextAlign.end),
+      content: Text("هل تريد تأكيد الجحز؟",textAlign: TextAlign.end),
+      actions: [
+        okButton,
+        cancleButton
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }
 // Row(
 // mainAxisAlignment: MainAxisAlignment.center,

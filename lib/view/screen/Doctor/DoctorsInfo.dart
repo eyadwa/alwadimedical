@@ -59,7 +59,7 @@ class DoctorsInfo extends StatelessWidget {
                 children: [
                   Container(
                     height: 90,
-                    width: 90,
+                    width: 150,
                     padding:EdgeInsets.all(5),
                     decoration: BoxDecoration(border: Border.all(width: 0.5)),child:   Column(
                     children: [
@@ -74,7 +74,7 @@ class DoctorsInfo extends StatelessWidget {
                   ),),
                   Container(
                     height: 90,
-                    width: 90,
+                    width: 150,
                      padding:EdgeInsets.all(5),
                     decoration: BoxDecoration(border: Border.all(width: 0.5)),child:   Column(
                     children: [
