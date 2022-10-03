@@ -41,8 +41,8 @@ class DoctorsSp extends StatelessWidget {
                   ),
                   SizedBox(height: 1),
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 1),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 25, vertical: 1),
                     child: TextFormField(
                       textAlign: TextAlign.right,
                       controller: _searchController,
@@ -86,11 +86,10 @@ class DoctorsSp extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: () {
-                                  Get.to(DoctorsInfo(index)
-                                  );
-var datenow=DateTime.now();
-                                  var d=DateFormat('yyyy-MM-dd').format(datenow);
-                                 controller.ListAppointDoctorApi(d.toString(),"${controller.DoctorlistApi[index].doctorId!}") ;
+                                  Get.to(DoctorsInfo(index));
+                                  var datenow = DateTime.now();
+                                  var d = DateFormat('yyyy-MM-dd').format(datenow);
+                              //    controller.ListAppointDoctorApi(d.toString(),"${controller.DoctorlistApi[index].doctorId!}");
                                 },
                                 child: Container(
                                   width: 200,
@@ -136,8 +135,11 @@ var datenow=DateTime.now();
                                         Column(
                                           children: [
                                             Text(
-                                             " د."+" "+ controller.DoctorlistApi[index]
-                                                  .doctorName!,
+                                              " د." +
+                                                  " " +
+                                                  controller
+                                                      .DoctorlistApi[index]
+                                                      .doctorName!,
                                               style: TextStyle(
                                                   fontSize: 30,
                                                   fontWeight: FontWeight.bold),

@@ -1,6 +1,3 @@
-
-// import 'dart:html';
-
 import 'package:centerm/data/model/ListAppointmentDoctor.dart';
 import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
@@ -44,6 +41,7 @@ class MainController extends GetxController {
   var isLoadingspaci = true.obs;
   var isLoadingpatient = true.obs;
   var isLoadingApointDate = true.obs;
+  var isLoadinglistAppoint = true.obs;
 
   final isAuth = BehaviorSubject<bool>();
 
@@ -149,29 +147,6 @@ class MainController extends GetxController {
     update();
   }
 
-  static void AddNamedept(String namedeptt) {
-    deptt = namedeptt;
-    return print(deptt);
-  }
-
-  static String deptt = "تقويم الأسنان والفكين";
-
-  Future fetcDoctor(String dept) async {
-    isLoadingDoctor = true;
-    update();
-    try {
-      var Doctor = await Remote_Services_Doctor.fetchDoctor(dept);
-      if (Doctor != null) {
-        DoctorlistApi.value = Doctor.doctors;
-        isLoadingDoctor = false;
-        update();
-      }
-    } finally {
-      isLoadingDoctor = false;
-      update();
-    }
-  }
-
   void choisdate( _date, String idDoctor) {
     idAppointment = idDoctor;
     final DateFormat formatter = DateFormat('yyyy-MM-dd');
@@ -252,22 +227,75 @@ class MainController extends GetxController {
 
 
 
-  Future ListAppointDoctorApi (String date, String id) async {
-    try {
-      var dataer = await Remote_Services_AppointListDoctor.fetchAppoint( id,date);
-      if (dataer != null) {
+  static void AddNamedept(String namedeptt) {
+    deptt = namedeptt;
+    return print(deptt);
+  }
 
-        listAppoint.value=dataer;
-        isLoadingApointDate(false);
+  static String deptt = "تقويم الأسنان والفكين";
+
+  Future fetcDoctor(String dept) async {
+    isLoadingDoctor = true;
+    update();
+    try {
+      var Doctor = await Remote_Services_Doctor.fetchDoctor(dept);
+      if (Doctor != null) {
+        DoctorlistApi.value = Doctor.doctors;
+        isLoadingDoctor = false;
         update();
       }
     } finally {
-      isLoadingApointDate(false);
+      isLoadingDoctor = false;
+      update();
+    }
+  }
+
+
+  void changeDate(String id,dateAppoint )
+{
+  // String dateAppoint = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+  isssd=id;
+  datss =dateAppoint;
+  print(datss);
+  update();
+
+}
+
+  String isssd='';
+  String datss ='';
+  //DateFormat('yyyy-MM-dd').format(DateTime.now());
+  Future ListAppointDoctorApi (String iddoctordate, String dateappoint) async {
+    try {
+update();
+      var dataer = await Remote_Services_AppointListDoctor.fetchAppoint(iddoctordate,dateappoint);
+
+update();
+      if (dataer != null) {
+        update();
+        listAppoint.value=dataer;
+        update();
+        isLoadinglistAppoint(false);
+        update();
+      }
+    } finally {
+      isLoadinglistAppoint(false);
 
     }
     update();
-    patientlist.refresh();
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
    void deletetext (){
      result ="";

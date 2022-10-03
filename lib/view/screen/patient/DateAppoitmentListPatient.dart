@@ -78,8 +78,8 @@ class DateAppoitment extends StatelessWidget {
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
-                        // blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+                         blurRadius: 100,
+                        offset: Offset(5, 6), // changes position of shadow
                       ),
                     ],
                     borderRadius: BorderRadius.circular(
@@ -132,6 +132,10 @@ class DateAppoitment extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 5),
+                    Container(color: Colors.black26,
+                      height: 2,
+                      width: 100,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

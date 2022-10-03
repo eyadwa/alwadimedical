@@ -23,7 +23,7 @@ class DoctorsInfo extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Container(
-                height: 300,
+                height: 200,
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -146,16 +146,16 @@ class DoctorsInfo extends StatelessWidget {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/image/splashtow.png",
-                    height: 50,
-                    width: 50,
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Image.asset(
+              //       "assets/image/splashtow.png",
+              //       height: 50,
+              //       width: 50,
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
