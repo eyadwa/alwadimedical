@@ -1,6 +1,4 @@
 import 'package:http/http.dart' as http;
-import 'package:get/instance_manager.dart';
-
 import '../../data/model/department.dart';
 class Remote_Services {
   static var client =http.Client();

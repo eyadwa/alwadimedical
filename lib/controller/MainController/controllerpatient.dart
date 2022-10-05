@@ -1,20 +1,22 @@
-import 'dart:ffi';
-
+import 'package:centerm/data/model/ListAppointmentDoctor.dart';
+import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
+import 'package:centerm/data/model/eyad.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:centerm/data/model/department.dart';
-import 'package:http/http.dart' as http;
-import '';
 import '../../data/model/Specialization.dart';
 import '../../data/model/appointment.dart';
 import '../../data/model/loginmodel.dart';
 import '../../data/model/model patient.dart';
+import 'ListAppointmentDoctorController.dart';
 import 'RemoteService_login.dart';
 import 'Remote_Service_Doctor.dart';
 import 'Remte_Services_Specialization.dart';
 import 'Reomte_Service_Appointment.dart';
+import 'newRemote_Service_Appoint.dart';
 import 'remoteServices.dart';
 import 'Remote_Services_patient.dart';
 
@@ -25,14 +27,21 @@ class MainController extends GetxController {
   var DoctorlistApi = <Doctor>[].obs;
   var appointmentList = <AppointmentElement>[].obs;
   var patientEmptyList = <UsersEntity>[].obs;
+  var eyadlist = <eyadeyad>[].obs;
 
+  var listAppoint = <ListAppointDoctor>[].obs;
+
+  var isLoading = true.obs;
   var isLoadingPatient = true.obs;
   var isLoadingdept = true.obs;
   var isLoadingDoctor = true;
   var isLoadingAppointment = true.obs;
+  var isLoadingAppointmentList = true.obs;
   var isLoadingDoctors = true.obs;
   var isLoadingspaci = true.obs;
   var isLoadingpatient = true.obs;
+  var isLoadingApointDate = true.obs;
+  var isLoadinglistAppoint = true.obs;
 
   final isAuth = BehaviorSubject<bool>();
 
@@ -49,14 +58,44 @@ class MainController extends GetxController {
 
   @override
   void onInit() {
+
+    fetceyad();
     fetcpatient();
     fetcdept();
     fetcSpeci(iddept);
     fetcDoctor(deptt);
-    fetcappointment(idAppointment, date);
+   // fetcappointment(idAppointment, date);
+    eyadapointment(idAppointment, date);
+    login2();
     super.onInit();
   }
 
+  Future login(String username, String password) async {
+    try {
+      var patient = await Remote_patient.login(username, password);
+      if (patient != null) {
+        patientEmptyList.value = [patient.users];
+        isLoadingPatient(false);
+        isAuth.add(true);
+      }
+    } finally {
+      isLoadingPatient(false);
+    }
+    update();
+  }
+  Future login2() async {
+    try {
+      var patient = await Remote_patient.login2();
+      if (patient != null) {
+        patientEmptyList.value = [patient.users];
+        isLoadingPatient(false);
+        isAuth.add(true);
+      }
+    } finally {
+      isLoadingPatient(false);
+    }
+    update();
+  }
 
   Future fetcdept() async {
     try {
@@ -65,7 +104,7 @@ class MainController extends GetxController {
         deptlist.value = product.departments;
 
         isLoadingdept(false);
-        // print (product);
+
       }
     } finally {
       isLoadingdept(false);
@@ -108,6 +147,86 @@ class MainController extends GetxController {
     update();
   }
 
+  void choisdate( _date, String idDoctor) {
+    idAppointment = idDoctor;
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+    final String formatted = formatter.format(_date);
+
+    date = _date;
+
+    update();
+  }
+
+  var date = DateTime.utc(2022, 9, 20);
+
+  String idAppointment = "35";
+
+
+
+  Future fetcappointment(idAppointment, date) async {
+    try {  update();
+      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());  update();
+      if (Appointment != null) {
+
+        var appointments = Appointment.appointment != null ? Appointment.appointment! : <AppointmentElement>[];
+
+
+        appointmentList.value = appointments;
+        update();
+        isLoadingAppointment(false);
+        update();
+
+      }else{
+
+      }
+    } finally {
+      isLoadingAppointment(true);
+    }
+    update();
+  }
+
+  Future eyadapointment(idAppointment, date) async {
+    try {
+      var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());  update();
+      if (Appointment != null) {
+
+        appointmentList.value = Appointment.appointment!;
+
+        update();
+
+        isLoadingAppointment(false);
+        update();
+
+      }else{
+
+      }
+    } finally {
+      isLoadingAppointment(true);
+    }
+    update();
+  }
+
+
+
+
+  Future fetceyad() async {
+    try {
+      var data = await Remote_Services_AppointList.fetchAppoint();
+      if (data != null) {
+        eyadlist.value = data.appointments;
+        isLoadingApointDate(false);
+      }
+    } finally {
+      isLoadingApointDate(false);
+
+    }
+    update();
+    patientlist.refresh();
+  }
+
+
+
+
   static void AddNamedept(String namedeptt) {
     deptt = namedeptt;
     return print(deptt);
@@ -131,45 +250,130 @@ class MainController extends GetxController {
     }
   }
 
-  void choisdate(DateTime _date, String idDoctor) {
-    idAppointment = idDoctor;
-    date = _date;
-    update();
-  }
 
-  var date = DateTime.utc(2022, 9, 8);
+  void changeDate(String id,dateAppoint )
+{
+  // String dateAppoint = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-  String idAppointment = "34";
+  isssd=id;
+  datss =dateAppoint;
+  print(datss);
+  update();
 
-  Future fetcappointment(idAppointment, date) async {
+}
+
+  String isssd='';
+  String datss ='';
+  //DateFormat('yyyy-MM-dd').format(DateTime.now());
+  Future ListAppointDoctorApi (String iddoctordate, String dateappoint) async {
     try {
-      var Appointment = await Remote_Services_Appointment.fetchAppointment(
-          date.toString(), idAppointment.toString());
-      if (Appointment != null) {
-        var appointments = Appointment.appointment != null
-            ? Appointment.appointment!
-            : <AppointmentElement>[];
+update();
+      var dataer = await Remote_Services_AppointListDoctor.fetchAppoint(iddoctordate,dateappoint);
 
-        appointmentList.value = appointments;
-        isLoadingAppointment(false);
+update();
+      if (dataer != null) {
+        update();
+        listAppoint.value=dataer;
+        update();
+        isLoadinglistAppoint(false);
+        update();
       }
     } finally {
-      isLoadingAppointment(true);
+      isLoadinglistAppoint(false);
+
     }
     update();
   }
 
-  Future login(String username, String password) async {
-    try {
-      var patient = await Remote_patient.login(username, password);
-      if (patient != null) {
-        patientEmptyList.value = [patient.users];
-        isLoadingPatient(false);
-        isAuth.add(true);
+
+
+
+
+
+
+
+
+
+
+
+
+   void deletetext (){
+     result ="";
+update();
+   }
+
+
+
+  String result="";
+  Future newAppoitment2(
+      String? IdDoctor,
+      String? hour,
+      String? IdPatient,
+      String? date,) async
+
+  {
+
+    final url = Uri.parse('http://ayaarnous-001-site1.ftempurl.com/api/MobileP/GetAppoitment?DoctorId=$IdDoctor&HourAppoint=$hour:00:00&PatientId=$IdPatient&date=$date');
+    final response = await http.post(url);
+    if (response.statusCode == 200) {
+
+      final String responseString = response.body;
+      String x= '"هذا الموعد محجوز"';
+      String y= '"هذا التوقيت خارج أوقات الدوام"';
+
+      if (responseString== x)
+      {
+        result='"هذا الموعد محجوز"';
+        update();
+
+
+      }else if (responseString==y)
+      {
+        result="هذا التوقيت خارج أوقات الدوام";
+        update();
+      }else{
+        result="تم التسجيل بنجاح";
+        update();
+
       }
-    } finally {
-      isLoadingPatient(true);
-    }
-    update();
+
+      return result;
+    } else
+      return null;
   }
+
+  // Future<void> _openFacebook() async {
+  //   String fbProtocolUrl;
+  //   if (Platform.isIOS) {
+  //     fbProtocolUrl = 'fb://profile/{your-page-id}';
+  //   } else {
+  //     fbProtocolUrl = 'fb://page/{your-page-id}';
+  //   }
+  //
+  //   String fallbackUrl = 'https://www.facebook.com/{your-page-uri}';
+  //
+  //   try {
+  //     Uri fbBundleUri = Uri.parse(fbProtocolUrl);
+  //     var canLaunchNatively = await canLaunchUrl(fbBundleUri);
+  //
+  //     if (canLaunchNatively) {
+  //       launchUrl(fbBundleUri);
+  //     } else {
+  //       await launchUrl(Uri.parse(fallbackUrl),
+  //           mode: LaunchMode.externalApplication);
+  //     }
+  //   } catch (e, st) {
+  //     // Handle this as you prefer
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
 }

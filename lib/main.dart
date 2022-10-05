@@ -1,6 +1,8 @@
 import 'package:centerm/controller/MainController/controllerpatient.dart';
+import 'package:centerm/view/screen/Doctor/DoctorsInfo.dart';
 import 'package:centerm/view/screen/auth/login.dart';
 import 'package:centerm/view/screen/home.dart';
+import 'package:centerm/view/screen/patient/DateAppoitmentListPatient.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Bindings.dart';
@@ -24,13 +26,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     MainController mc = Get.find();
 
-    mc.isAuth.stream.listen((event) {
-      if (event) {
-        Get.offAll(home());
-      } else {
-        Get.offAll(Login());
-      }
-    });
+    // mc.isAuth.stream.listen((event) {
+    //   if (event) {
+    //     Get.offAll(home());
+    //   } else {
+    //     Get.offAll(Login());
+    //   }
+    // });
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: home(),
     );
   }
 }
