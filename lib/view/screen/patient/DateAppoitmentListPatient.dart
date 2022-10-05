@@ -34,13 +34,13 @@ class DateAppoitment extends StatelessWidget {
                       // SizedBox(height: 5),
                       Text("مركز الوادي الطبي",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
+                              fontWeight: FontWeight.bold, fontSize: 18,color: ColorApp.white)),
                     ],
                   ),
                   SizedBox(height: 20),
                   Icon(
                     Icons.date_range_sharp,
-                    size: 70,
+                    size: 70,color: ColorApp.white,
                   ),
                   SizedBox(height: 20),
                   Row(
@@ -49,13 +49,13 @@ class DateAppoitment extends StatelessWidget {
                     children: [
                       Text(
                         "${_datenow.year}-",
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20,color: ColorApp.white),
                       ),
                       SizedBox(width: 2),
                       Text("${_datenow.month}-",
-                          style: TextStyle(fontSize: 20)),
+                          style: TextStyle(fontSize: 20,color: ColorApp.white)),
                       SizedBox(width: 2),
-                      Text("${_datenow.day}", style: TextStyle(fontSize: 20)),
+                      Text("${_datenow.day}", style: TextStyle(fontSize: 20,color: ColorApp.white)),
                     ],
                   )
                 ],

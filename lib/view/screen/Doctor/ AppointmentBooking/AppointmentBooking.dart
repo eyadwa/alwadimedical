@@ -132,6 +132,10 @@ class Appointment_Booking extends StatelessWidget {
                     width: 10,
                     height: 2,
                   ),
+
+
+                  // Text('sssssss',textAlign: TextAlign.center,),
+
                   SizedBox(height: 30),
                   Container(
                     // decoration: BoxDecoration(border: Border.all(width: 1)),
@@ -158,7 +162,7 @@ class Appointment_Booking extends StatelessWidget {
                         child:  Container(
                           width: 50,
                           height: 50,
-                          margin: EdgeInsets.all(10),
+                          margin: EdgeInsets.all(15),
                           decoration: BoxDecoration(
                               color:
                               controller.listAppoint[index].isReversed ==

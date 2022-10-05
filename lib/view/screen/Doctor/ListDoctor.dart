@@ -96,7 +96,7 @@ class DoctorsSp extends StatelessWidget {
                                      vertical: 10, horizontal: 5),
                                  child: Container(
                                    height: 75,
-                                   width: 150,
+                                   width:150,
                                    padding: EdgeInsets.symmetric(
                                        horizontal: 20, vertical: 10),
                                    decoration: BoxDecoration(
