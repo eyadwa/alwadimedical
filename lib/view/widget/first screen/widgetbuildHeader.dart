@@ -143,8 +143,8 @@ class _buildHeader extends State<buildHeader> {
           Get.to(UserPage());
         },
         child:  GetBuilder<MainController>(
-          builder: (controller) {
-            return Container(
+          builder: (controller)
+           =>controller.isLoadingPatient==true?Center(child: CircularProgressIndicator()): Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
               padding: EdgeInsets.symmetric(vertical: 40),
               child: Padding(
@@ -187,8 +187,8 @@ class _buildHeader extends State<buildHeader> {
                   ],
                 ),
               ),
-            );
-          }
+            )
+
         )
 
     );

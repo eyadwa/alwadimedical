@@ -79,7 +79,7 @@ class MainController extends GetxController {
         isAuth.add(true);
       }
     } finally {
-      isLoadingPatient(true);
+      isLoadingPatient(false);
     }
     update();
   }
@@ -92,7 +92,7 @@ class MainController extends GetxController {
         isAuth.add(true);
       }
     } finally {
-      isLoadingPatient(true);
+      isLoadingPatient(false);
     }
     update();
   }

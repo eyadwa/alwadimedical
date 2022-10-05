@@ -17,9 +17,7 @@ class DoctorsSp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: GetBuilder<MainController>(
-      builder: (controller) => controller.isLoadingDoctor
-          ? Center(child: CircularProgressIndicator())
-          : Container(
+      builder: (controller) => Container(
               height: double.infinity,
               width: double.infinity,
               // color: ColorApp.white,
@@ -70,98 +68,101 @@ class DoctorsSp extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                  GetBuilder<MainController>(builder: (controller) {
-                    if (controller.isLoadingspaci == true) {
-                      return Center(child: CircularProgressIndicator());
-                    } else {
-                      return Container(
-                        width: 200,
-                        height: 800,
-                        padding: EdgeInsets.all(10),
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                        child: ListView.builder(
-                            controller: scrolleController,
-                            itemCount: controller.DoctorlistApi.length,
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  Get.to(DoctorsInfo(index));
-                                  var datenow = DateTime.now();
-                                  var d = DateFormat('yyyy-MM-dd').format(datenow);
-                              //    controller.ListAppointDoctorApi(d.toString(),"${controller.DoctorlistApi[index].doctorId!}");
-                                },
-                                child: Container(
-                                  width: 200,
-                                  height: 325,
-                                  padding: EdgeInsets.all(10),
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 10, horizontal: 5),
-                                  child: Container(
-                                    height: 75,
-                                    width: 150,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: ColorApp.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black26,
-                                          spreadRadius: 10,
-                                          blurRadius: 1,
-                                          offset: Offset(0,
-                                              5), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(60),
-                                              topLeft: Radius.circular(60),
-                                              bottomRight: Radius.circular(100),
-                                              bottomLeft: Radius.circular(100)),
-                                          child: Image.memory(
-                                            base64Decode(controller
-                                                .DoctorlistApi[index]
-                                                .doctorImg!),
-                                            width: 300,
-                                          ),
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text(
-                                              " د." +
-                                                  " " +
-                                                  controller
-                                                      .DoctorlistApi[index]
-                                                      .doctorName!,
-                                              style: TextStyle(
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            SizedBox(height: 3),
-                                            Text(
-                                                "${controller.DoctorlistApi[index].doctorCertificate}",
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.w100)),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }),
-                      );
-                    }
-                  }),
+                     GetBuilder<MainController>(builder: (controller) =>  controller.isLoadingDoctor
+                         ? Center(child: CircularProgressIndicator())
+                         :Container(
+                       width: 200,
+                       height: 800,
+                       padding: EdgeInsets.all(10),
+                       margin:
+                       EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                       child:
+                       ListView.builder(
+                           controller: scrolleController,
+                           itemCount: controller.DoctorlistApi.length,
+                           itemBuilder: (context, index) {
+                             return InkWell(
+                               onTap: () {
+                                 Get.to(DoctorsInfo(index));
+                                 var datenow = DateTime.now();
+                                 var d = DateFormat('yyyy-MM-dd').format(datenow);
+                                 //    controller.ListAppointDoctorApi(d.toString(),"${controller.DoctorlistApi[index].doctorId!}");
+                               },
+                               child: Container(
+                                 width: 200,
+                                 height: 275,
+                                 padding: EdgeInsets.all(10),
+                                 margin: EdgeInsets.symmetric(
+                                     vertical: 10, horizontal: 5),
+                                 child: Container(
+                                   height: 75,
+                                   width: 150,
+                                   padding: EdgeInsets.symmetric(
+                                       horizontal: 20, vertical: 10),
+                                   decoration: BoxDecoration(
+                                     borderRadius: BorderRadius.circular(50),
+                                     color: ColorApp.white,
+                                     boxShadow: [
+                                       BoxShadow(
+                                         color: Colors.black26,
+                                         spreadRadius: 10,
+                                         blurRadius: 1,
+                                         offset: Offset(0,
+                                             5), // changes position of shadow
+                                       ),
+                                     ],
+                                   ),
+                                   child: Column(
+                                     crossAxisAlignment:
+                                     CrossAxisAlignment.center,
+                                     children: [
+                                       ClipRRect(
+                                         borderRadius: BorderRadius.only(
+                                             topRight: Radius.circular(60),
+                                             topLeft: Radius.circular(60),
+                                             bottomRight: Radius.circular(100),
+                                             bottomLeft: Radius.circular(100)),
+                                         child: Image.memory(
+                                           base64Decode(controller
+                                               .DoctorlistApi[index]
+                                               .doctorImg!),
+                                           width: 200,
+                                         ),
+                                       ),
+                                       Column(
+                                         children: [
+                                           Text(
+                                             " د." +
+                                                 " " +
+                                                 controller
+                                                     .DoctorlistApi[index]
+                                                     .doctorName!,
+                                             style: TextStyle(
+                                                 fontSize: 30,
+                                                 fontWeight: FontWeight.bold),
+                                           ),
+                                           SizedBox(height: 3),
+                                           Text(
+                                               "${controller.DoctorlistApi[index].doctorCertificate}",
+                                               style: TextStyle(
+                                                   fontSize: 20,
+                                                   fontWeight:
+                                                   FontWeight.w100)),
+                                         ],
+                                       ),
+                                     ],
+                                   ),
+                                 ),
+                               ),
+                             );
+                           }),
+                     )
+
+
+
+             ),
+
+
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.center,
                   //   children: [

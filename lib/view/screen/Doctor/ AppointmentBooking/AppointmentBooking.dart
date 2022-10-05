@@ -244,9 +244,6 @@ class Appointment_Booking extends StatelessWidget {
                         print(controller.patientEmptyList[0].patientId);
                         print(datetime);
                          controller.newAppoitment2(idDoctor,dateAppoit , "${controller.patientEmptyList[0].patientId}", datetime,);
-
-
-
                         //Get.to(home());
 
                         // print(  "${controller.patientEmptyList[0].patientId}");
@@ -267,9 +264,7 @@ class Appointment_Booking extends StatelessWidget {
                       ),
                       minWidth: 10.0,
                       height: 35,
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     ),
                   ),
                 ]),

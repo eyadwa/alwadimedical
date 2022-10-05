@@ -82,7 +82,9 @@ class _home extends State<home> {
                     return Container(
                         height: 800,
                         width: 200,
-                         child: SpecializationWidgetGridView());
+                         child:
+                         SpecializationWidgetGridView()
+                        );
                   }),
                 ),
               )

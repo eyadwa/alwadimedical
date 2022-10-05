@@ -11,7 +11,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     Key? key,
   }) : super(key: key);
   final padding = EdgeInsets.symmetric(horizontal: 30);
-  MainController _ConrolllerPatiant = Get.put(MainController());
+//  MainController _ConrolllerPatiant = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
