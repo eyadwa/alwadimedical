@@ -52,20 +52,22 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: "^0.9.2"
 
-flutter_icons:
-   image_path: "assets/image/splashtow.png"
-#   image_path_android: "assets/image/splashtow.png"
-#   image_path_ios: "assets/image/splashtow.png"
-   android: true
-   ios: true
+#flutter_icons:
+#   image_path: "assets/image/splashtow.png"
+##   image_path_android: "assets/image/splashtow.png"
+##   image_path_ios: "assets/image/splashtow.png"
+#   android: true
+#   ios: true
+
 
 
 flutter_native_splash:
-  image: assets/image/splashtow.png
+  image: assets/image/alwadailogo.png
   ios: true
   android: true
   android_gravity: center
-#  background_image: assets/image/splashfirst.png
+  color: "#ffffff"
+  #  background_image: background_imageassets/image/backgrundsplash.png
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -87,19 +89,21 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/image/photoDoctor3.jpg
-     - assets/image/photo_one.jpg
-     - assets/image/p.jpg
-     - assets/image/photo_three.jpg
-     - assets/image/photo_four.jpg
-     - assets/image/userphoto.png
-     - assets/image/splashfirst.png
-     - assets/image/splashtow.png
-     - assets/image/photoDoctor1.png
-     - assets/image/photoDoctor4.jpg
-     - assets/image/photoDoctor2.jpg
-     - assets/image/doctorphoto.png
-     - assets/image/splashtow.png
+    - assets/image/photoDoctor3.jpg
+    - assets/image/photo_one.jpg
+    - assets/image/p.jpg
+    - assets/image/photo_three.jpg
+    - assets/image/photo_four.jpg
+    - assets/image/userphoto.png
+    - assets/image/splashfirst.png
+    - assets/image/backgrundsplash.png
+    - assets/image/splashtow.png
+    - assets/image/photoDoctor1.png
+    - assets/image/photoDoctor4.jpg
+    - assets/image/photoDoctor2.jpg
+    - assets/image/doctorphoto.png
+    - assets/image/splashtow.png
+    - assets/image/alwadailogo.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

@@ -10,7 +10,7 @@ String usersToJson(Users data) => json.encode(data.toJson());
 
 class Users {
   Users({
-   required this.users,
+    required    this.users,
   });
 
   UsersEntity users;
@@ -20,7 +20,7 @@ class Users {
   );
 
   Map<String, dynamic> toJson() => {
-    "": users.toJson(),
+    "users": users.toJson(),
   };
 }
 
@@ -48,17 +48,17 @@ class UsersEntity {
   String? patientName;
   String? patientPhone;
   String? patientAddress;
-  dynamic patientImg;
+  String? patientImg;
   String? patientPassword;
-  bool? isActive;
+  dynamic isActive;
   String? patientLocation;
-  String? activationCode;
-  DateTime? activationDate;
-  bool? isDeleted;
+  dynamic activationCode;
+  dynamic activationDate;
+  dynamic isDeleted;
   int? patientAge;
   String? patientGender;
-  DateTime? registrationDate;
-  String? token;
+  dynamic registrationDate;
+  dynamic token;
   List<dynamic>? appointments;
 
   factory UsersEntity.fromJson(Map<String, dynamic> json) => UsersEntity(
@@ -71,11 +71,11 @@ class UsersEntity {
     isActive: json["isActive"],
     patientLocation: json["patientLocation"],
     activationCode: json["activationCode"],
-    activationDate: DateTime.parse(json["activationDate"]),
+    activationDate: json["activationDate"],
     isDeleted: json["isDeleted"],
     patientAge: json["patientAge"],
     patientGender: json["patientGender"],
-    registrationDate: DateTime.parse(json["registrationDate"]),
+    registrationDate: json["registrationDate"],
     token: json["token"],
     appointments: List<dynamic>.from(json["appointments"].map((x) => x)),
   );
@@ -90,11 +90,11 @@ class UsersEntity {
     "isActive": isActive,
     "patientLocation": patientLocation,
     "activationCode": activationCode,
-    "activationDate": activationDate!.toIso8601String(),
+    "activationDate": activationDate,
     "isDeleted": isDeleted,
     "patientAge": patientAge,
     "patientGender": patientGender,
-    "registrationDate": registrationDate!.toIso8601String(),
+    "registrationDate": registrationDate,
     "token": token,
     "appointments": List<dynamic>.from(appointments!.map((x) => x)),
   };

@@ -10,7 +10,7 @@ String specializationsToJson(Specializations data) => json.encode(data.toJson())
 
 class Specializations {
   Specializations({
-  required  this.specializations,
+    required  this.specializations,
   });
 
   List<Specialization> specializations;

@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../controller/MainController/controllerpatient.dart';
 import '../../screen/Doctor/ListDoctor.dart';
 class SpecializationWidgetGridView extends StatelessWidget {
@@ -8,8 +10,8 @@ class SpecializationWidgetGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  GetBuilder<MainController>(builder: (Controller) {
-      return Container(
+    return  GetBuilder<MainController>(builder: (Controller)  => Controller.isLoadingspaci==true?
+    Center(child: CircularProgressIndicator()):Container(
         child: GridView.builder(
   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
@@ -18,8 +20,10 @@ class SpecializationWidgetGridView extends StatelessWidget {
   ),
 
             itemCount: Controller.spacilist.length,
-            itemBuilder: (context, index) {if (Controller.isLoadingDoctor==true){}
-              return InkWell(
+            itemBuilder: (context, index)
+
+              =>
+              InkWell(
                 child: Container(
                   margin: EdgeInsets.symmetric(
                       vertical: 1, horizontal: 1),
@@ -31,14 +35,17 @@ class SpecializationWidgetGridView extends StatelessWidget {
                     children: <Widget>[
                       SizedBox(height: 6),
                       InkWell(onTap: (){
-                        Get.to(DoctorsSp());
+
+//Get.to(SliderRight(child:DoctorsSp() ));
+//Navigator.of(context).push(SliderRight(child:DoctorsSp() ));
+Get.to(DoctorsSp() ,transition:Transition.rightToLeft );
                         MainController.AddNamedept("${Controller.deptlist[index].departmentName}");
                         print("${Controller.spacilist[index].specializationName}");
                         Controller.fetcDoctor("${Controller.spacilist[index].specializationName}");
                       },
                         child: Container(
                           width: 200,
-                          height: 200,
+                          height: 150,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             boxShadow: [
@@ -76,10 +83,10 @@ class SpecializationWidgetGridView extends StatelessWidget {
                     ],
                   ),
                 ),
-              );
-            }),
-      );
-    }
+              )
+            ),
+      )
+
     );
 
   }
