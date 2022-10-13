@@ -1,12 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../controller/MainController/controllerpatient.dart';
-import '../../../data/datasource/static.dart';
 import '../../screen/Doctor/ListDoctor.dart';
-import '../../screen/home2.dart';
 class SpecializationWidget extends StatelessWidget {
   const SpecializationWidget({Key? key}) : super(key: key);
 
