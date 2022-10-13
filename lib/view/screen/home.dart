@@ -91,7 +91,7 @@ class _home extends State<home> {
 
               // Container(
               //   height: 500,
-              //   width: 200,
+              //  cccccccccccccc width: 200,
               //   child: GetBuilder<MainController>(
               //       builder: (Controller) => GridView.builder(
               //             gridDelegate:

@@ -1,13 +1,8 @@
-import 'package:centerm/view/screen/dept/view_details_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/constant/color.dart';
 import '../../../core/constant/const.dart';
-import '../../../data/datasource/static.dart';
 import '../../widget/drawer/navigation_drawer.dart';
-import '../../widget/first screen/list_horizontal.dart';
-import '../../widget/item/widgetitemviewgreadview.dart';
 
 class ViewItem extends StatelessWidget {
   const ViewItem({Key? key}) : super(key: key);

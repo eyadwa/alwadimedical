@@ -68,8 +68,7 @@ class DoctorsSp extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10),
-                     GetBuilder<MainController>(builder: (controller) =>  controller.isLoadingDoctor
-                         ? Center(child: CircularProgressIndicator())
+                     GetBuilder<MainController>(builder: (controller) =>  controller.isLoadingDoctor ? Center(child: CircularProgressIndicator())
                          :Container(
                        width: 200,
                        height: 800,
