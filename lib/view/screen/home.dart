@@ -1,15 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/MainController/controllerpatient.dart';
 import '../../core/constant/color.dart';
-import '../widget/Specialization/WidgetSpecialization.dart';
 import '../widget/Specialization/WidgetSpecialzationGridview.dart';
 import '../widget/dept/ListDepthome.dart';
 import '../widget/drawer/navigation_drawer.dart';
-import '../widget/first screen/whatsapp.dart';
-import 'Doctor/ListDoctor.dart';
 
 class home extends StatefulWidget {
   const home({
@@ -19,8 +14,6 @@ class home extends StatefulWidget {
   @override
   _home createState() => _home();
 }
-
-
 
 class _home extends State<home> {
 
