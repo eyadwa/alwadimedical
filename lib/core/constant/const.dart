@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'color.dart';
-
+import 'package:http/http.dart'as http;
 const String namecenter="مركز الوادي الطبي";
 const BoxDecoration appbarthem=   BoxDecoration(gradient: LinearGradient(colors: [ColorApp.red, ColorApp.purpleAccent], end: Alignment.centerLeft, begin: Alignment.centerRight,),);
 
@@ -9,7 +9,10 @@ const BoxDecoration appbarthem=   BoxDecoration(gradient: LinearGradient(colors:
 const String Url_BASE='http://ayaarnous-001-site1.ftempurl.com';
 const String Url_alwadi='https://alwadi-mc.sy';
 
+class MainClint{
+  static var client = http.Client();
 
+}
 
 
 // import 'dart:convert';

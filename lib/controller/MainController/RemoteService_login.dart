@@ -4,10 +4,9 @@ import '../../core/constant/const.dart';
 import '../../data/model/loginmodel.dart';
 
 class Remote_patient {
-  static var client = http.Client();
 
   static Future<Users?> login(String username, String password) async {
-    var response = await client.get(Uri.parse(
+    var response = await MainClint.client.get(Uri.parse(
         '$Url_alwadi/api/MobileP/logIn?name=$username&password=$password'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
@@ -18,7 +17,7 @@ class Remote_patient {
     }
   }
   static Future<Users?> login2() async {
-    var response = await client.get(Uri.parse(
+    var response = await MainClint.client.get(Uri.parse(
         '$Url_alwadi/api/MobileP/logIn?name=فراس&password=123456'));
     if (response.statusCode == 200) {
       var jsonString = response.body;

@@ -4,12 +4,11 @@ import '../../core/constant/const.dart';
 import '../../data/model/appointment.dart';
 
 class Remote_Services_Appointment {
-  static var client = http.Client();
 
   static Future<Appointment?> fetchAppointment(String date, String id) async {
     print(date);
     print(id);
-    var response = await client.get(Uri.parse(
+    var response = await MainClint.client.get(Uri.parse(
         '$Url_alwadi/api/MobileP/GetReversedAppointment?id=$id&date=$date'));
     if (response.statusCode == 200) {
 

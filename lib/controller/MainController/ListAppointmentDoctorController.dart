@@ -3,12 +3,11 @@ import 'package:http/http.dart' as http;
 import '../../core/constant/const.dart';
 import '../../data/model/ListAppointmentDoctor.dart';
 class Remote_Services_AppointListDoctor {
-  static var client = http.Client();
 
 
   static Future<List<ListAppointDoctor>?> fetchAppoint(String id,String date ) async {
 
-    var response = await client.get(Uri.parse('$Url_alwadi/api/MobileP/GetAllAppointment?DoctorId=$id&date=$date'));
+    var response = await MainClint.client.get(Uri.parse('$Url_alwadi/api/MobileP/GetAllAppointment?DoctorId=$id&date=$date'));
 print(id);
 print(id);
 print(id);
