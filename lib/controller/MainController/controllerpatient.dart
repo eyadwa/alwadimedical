@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:centerm/core/constant/color.dart';
 import 'package:centerm/data/model/ListAppointmentDoctor.dart';
 import 'package:http/http.dart' as http;
 import 'package:centerm/data/model/doctor.dart';
@@ -43,6 +46,11 @@ class MainController extends GetxController {
   var isLoadingpatient = true.obs;
   var isLoadingApointDate = true.obs;
   var isLoadinglistAppoint = true.obs;
+   Color colortext=ColorApp.new26;
+
+
+
+
   final isAuth = BehaviorSubject<bool>();
   Future<void> tryAutoLogin() async {
     final prefs = await SharedPreferences.getInstance();
@@ -131,6 +139,8 @@ class MainController extends GetxController {
       if (speci != null) {
         spacilist.value = speci.specializations;
         isLoadingspaci(false);
+
+        update();
       }
     } finally {
       isLoadingspaci(false);

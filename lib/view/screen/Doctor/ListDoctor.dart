@@ -51,12 +51,6 @@ class DoctorsSp extends StatelessWidget {
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 5, horizontal: 30),
                         enabled: false,
-                        // label: Container(
-                        //     margin: EdgeInsets.symmetric(horizontal: 9),
-                        //     child: Text(
-                        //       "بحث",
-                        //       style: TextStyle(fontSize: 40, color: ColorApp.nexpurple),
-                        //     )),
                         suffixIcon: Icon(
                           Icons.search_rounded,
                           color: ColorApp.nexpurple,
