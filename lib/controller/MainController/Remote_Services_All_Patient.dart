@@ -8,7 +8,8 @@ class Remote_Services_patient {
 
 
   static Future<Patient?> fetchpatient()async {
-    var response = await MainClint.client.get( Uri.parse('$Url_alwadi/api/MobileP/allPat'));
+     final String URL="/allPat";
+    var response = await Mainclient.client.get( Uri.parse('$Url_alwadi$URL'));
     if(response.statusCode==200){
       var jsonString =response.body;
       return patientFromJson(jsonString);

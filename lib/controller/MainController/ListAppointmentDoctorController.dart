@@ -6,8 +6,8 @@ class Remote_Services_AppointListDoctor {
 
 
   static Future<List<ListAppointDoctor>?> fetchAppoint(String id,String date ) async {
-
-    var response = await MainClint.client.get(Uri.parse('$Url_alwadi/api/MobileP/GetAllAppointment?DoctorId=$id&date=$date'));
+    final String URL ="/GetAllAppointment";
+    var response = await Mainclient.client.get(Uri.parse('$Url_alwadi$URL?DoctorId=$id&date=$date'));
 print(id);
 print(id);
 print(id);

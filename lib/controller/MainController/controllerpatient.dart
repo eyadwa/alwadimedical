@@ -16,13 +16,13 @@ import '../../data/model/appointment.dart';
 import '../../data/model/loginmodel.dart';
 import '../../data/model/model patient.dart';
 import 'ListAppointmentDoctorController.dart';
-import 'RemoteService_login.dart';
+import 'Remote_Service_login.dart';
 import 'Remote_Service_Doctor.dart';
 import 'Remte_Services_Specialization.dart';
 import 'Reomte_Service_Appointment.dart';
-import 'newRemote_Service_Appoint.dart';
-import 'remoteServices.dart';
-import 'Remote_Services_patient.dart';
+import 'Remote_Service_Appoint_new.dart';
+import 'Remote_Servicse_.All_dept.dart';
+import 'Remote_Services_All_Patient.dart';
 
 class MainController extends GetxController {
   var patientlist = <PatientElement>[].obs;
@@ -285,7 +285,7 @@ class MainController extends GetxController {
 
   {
 
-    final url = Uri.parse('$Url_alwadi/api/MobileP/GetAppoitment?DoctorId=$IdDoctor&HourAppoint=$hour:00:00&PatientId=$IdPatient&date=$date');
+    final url = Uri.parse('$Url_alwadi/GetAppoitment?DoctorId=$IdDoctor&HourAppoint=$hour:00:00&PatientId=$IdPatient&date=$date');
     final response = await http.post(url);
     if (response.statusCode == 200) {
 

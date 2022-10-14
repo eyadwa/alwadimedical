@@ -4,7 +4,9 @@ import '../../data/model/department.dart';
 class Remote_Services {
 
   static Future<Departments?> fetchdept()async {
-    var response = await MainClint.client.get( Uri.parse('$Url_alwadi/api/MobileP/allDep'));
+    final URL="/allDep";
+
+    var response = await Mainclient.client.get( Uri.parse('$Url_alwadi$URL'));
     if(response.statusCode==200){
       var jsonString =response.body;
       return departmentsFromJson(jsonString);

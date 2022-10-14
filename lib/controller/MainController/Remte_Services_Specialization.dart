@@ -5,7 +5,8 @@ import '../../data/model/Specialization.dart';
 class Remote_Services_Specializations {
 
   static Future<Specializations?> fetchspeci( String? idDept)async {
-    var response = await MainClint.client.get( Uri.parse('$Url_alwadi/api/MobileP/GetDepartmentSpecialization?id=$idDept'));
+    final String URl="/GetDepartmentSpecialization";
+    var response = await Mainclient.client.get( Uri.parse('$Url_alwadi$URl?id=$idDept'));
     if(response.statusCode==200){
       var jsonString =response.body;
       return specializationsFromJson(jsonString);

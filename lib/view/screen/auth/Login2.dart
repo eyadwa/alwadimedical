@@ -4,7 +4,7 @@ import 'package:centerm/view/widget/Auth/custonButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
-import '../../../controller/MainController/RemoteService_login.dart';
+import '../../../controller/MainController/Remote_Service_login.dart';
 import '../home.dart';
 import 'controllerAuth/PostDataPatient.dart';
 import 'controllerAuth/Sign up/Sign up.dart';
