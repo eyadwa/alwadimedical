@@ -1,8 +1,5 @@
 import 'package:centerm/controller/MainController/controllerpatient.dart';
-import 'package:centerm/view/screen/Doctor/DoctorsInfo.dart';
-import 'package:centerm/view/screen/auth/login.dart';
 import 'package:centerm/view/screen/home.dart';
-import 'package:centerm/view/screen/patient/DateAppoitmentListPatient.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'Bindings.dart';

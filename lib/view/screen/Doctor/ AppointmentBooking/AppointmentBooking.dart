@@ -193,45 +193,6 @@ class Appointment_Booking extends StatelessWidget {
                   ),
 
                   SizedBox(height: 2),
-
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 50),
-                  //   child: MaterialButton(onPressed: (){
-                  //     controller.eyadapointment(_dateTTime,"35");
-                  //     controller.choisdate(_dateTTime,"${controller.DoctorlistApi[0].doctorId}");
-                  //   },
-                  //     color: Colors.black,
-                  //
-                  //     height: 30,),
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 120),
-                  //   child: TextFormField(
-                  //     validator: (val) {
-                  //       val = hour_controller!.text;
-                  //       if (val.length != 2) {
-                  //         return '  ادخل الوقت صحيح مثال 01';
-                  //       } else
-                  //         return null;
-                  //     },
-                  //     controller: hour_controller,
-                  //     decoration: InputDecoration(
-                  //         hintText: "00",
-                  //         hintStyle: TextStyle(fontSize: 15),
-                  //         floatingLabelBehavior: FloatingLabelBehavior.always,
-                  //         contentPadding:
-                  //             EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-                  //         label: Container(
-                  //             margin: EdgeInsets.symmetric(horizontal: 9),
-                  //             child: Text(" ادخل الوقت")),
-                  //       suffixIcon: hour_controller!.text.isEmpty ?  Container(width: 0) : Container(width: 0)
-                  //        ,
-                  //         border: OutlineInputBorder(
-                  //           borderRadius: BorderRadius.circular(30),
-                  //         )),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 5),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
                     child: MaterialButton(
@@ -241,18 +202,8 @@ class Appointment_Booking extends StatelessWidget {
                         String x = "${controller.patientEmptyList[0].patientId}";
                         newAppoitment(idDoctor, datetime, x, dateAppoit);
 
-                        //Get.to(home());
 
-                        // print(  "${controller.patientEmptyList[0].patientId}");
-                        //   if(formKey.currentState!.validate()){
-                        //
-                        //   controller.newAppoitment2("${controller.DoctorlistApi[idDoctorIndex].doctorId}", "${hour_controller.text}", "${controller.patientEmptyList[0].patientId}", "${_dateTTime}");
-                        //   controller.fetcappointment("${_dateTTime}",controller.DoctorlistApi[0].doctorId);
-                        //
-                        // }else
-                        //   {
-                        //   print("the form contain error");
-                        // }
+
                       },
                       color: ColorApp.new26,
                       child: Text(
@@ -284,7 +235,7 @@ class Appointment_Booking extends StatelessWidget {
         textAlign: TextAlign.start,
       ),
       onPressed: () {
-        // Get.to(home());
+        Get.to(home());
       },
     );
 
