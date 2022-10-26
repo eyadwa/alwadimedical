@@ -1,10 +1,7 @@
-import 'package:http/http.dart' as http;
-
 import '../../core/constant/const.dart';
 import '../../data/model/loginmodel.dart';
 
 class Remote_patient {
-
   static Future<Users?> login(String username, String password) async {
     var response = await Mainclient.client.get(Uri.parse(
         '$Url_alwadi/logIn?name=$username&password=$password'));
@@ -18,7 +15,7 @@ class Remote_patient {
   }
   static Future<Users?> login2() async {
     var response = await Mainclient.client.get(Uri.parse(
-        '$Url_alwadi/logIn?name=فراس&password=123456'));
+        '$Url_alwadi/logIn?name=سالي&password=123456'));
     if (response.statusCode == 200) {
       var jsonString = response.body;
       return usersFromJson(jsonString);
