@@ -10,7 +10,7 @@ class DoctorsSp extends StatelessWidget {
   DoctorsSp({Key? key}) : super(key: key);
   TextEditingController? _searchController;
 
-  MainController _controller = Get.find();
+
   ScrollController scrolleController = ScrollController();
 
   @override
@@ -20,7 +20,6 @@ class DoctorsSp extends StatelessWidget {
       builder: (controller) => Container(
               height: double.infinity,
               width: double.infinity,
-              // color: ColorApp.white,
               child: ListView(
                 children: [
                   Row(
@@ -79,7 +78,6 @@ class DoctorsSp extends StatelessWidget {
                                  Get.to(DoctorsInfo(index),transition: Transition.rightToLeft);
                                  var datenow = DateTime.now();
                                  var d = DateFormat('yyyy-MM-dd').format(datenow);
-                                 //    controller.ListAppointDoctorApi(d.toString(),"${controller.DoctorlistApi[index].doctorId!}");
                                },
                                child: Container(
                                  width: 200,
@@ -158,22 +156,6 @@ class DoctorsSp extends StatelessWidget {
 
 
              ),
-
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     Image.asset(
-                  //       "assets/image/splashfirst.png",
-                  //       height: 50,
-                  //       width: 50,
-                  //     ),
-                  //     SizedBox(width: 5),
-                  //     Text("مركز الوادي الطبي",
-                  //         style: TextStyle(
-                  //             fontWeight: FontWeight.bold, fontSize: 18)),
-                  //   ],
-                  // ),
                 ],
               ),
             ),

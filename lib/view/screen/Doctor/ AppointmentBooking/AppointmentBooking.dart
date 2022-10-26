@@ -70,23 +70,6 @@ class Appointment_Booking extends StatelessWidget {
                       icon: Icon(Icons.date_range,
                           size: 50, color: ColorApp.new26)),
                   SizedBox(height: 10),
-                  // Padding(
-                  //   padding:
-                  //       EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-                  //   child: MaterialButton(
-                  //     onPressed: _showDatePicker,
-                  //     padding: EdgeInsets.all(10),
-                  //     color: ColorApp.new26,
-                  //     elevation: 25,
-                  //     shape: RoundedRectangleBorder(
-                  //         borderRadius:
-                  //             BorderRadius.all(Radius.circular(20.0))),
-                  //     child: Text(
-                  //       "اختار التاريخ المناسب",
-                  //       style: TextStyle(color: ColorApp.black, fontSize: 15),
-                  //     ),
-                  //   ),
-                  // ),
                   Container(
                     height: 75,
                     width: 300,
@@ -96,21 +79,12 @@ class Appointment_Booking extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: 60,
                         itemBuilder: (context, index) {
-                          lastDayOfMonth =
-                              DateTime(now.year, now.month, now.day + index);
+                          lastDayOfMonth =DateTime(now.year, now.month, now.day + index);
                           return GestureDetector(
                             onTap: () {
-                              var lasttttDayOfMonth = DateTime(
-                                  now.year, now.month, now.day + index);
-                              var datetoday = DateFormat('yyyy-MM-dd')
-                                  .format(lasttttDayOfMonth);
-                              controller.changeDate(idDoctor, datetoday);
-                              controller.ListAppointDoctorApi(
-                                  idDoctor, datetoday);
-                              dateAppoit =
-                                  "${lastDayOfMonth.year}/${lastDayOfMonth.month}/${lastDayOfMonth.day}";
-                              dateAppoit = datetoday;
-                              // print(dateAppoit);
+                              controller.Viewx("${dateAppoit}");
+                              var lasttttDayOfMonth = DateTime(now.year, now.month, now.day + index);
+                              var datetoday = DateFormat('yyyy-MM-dd').format(lasttttDayOfMonth);controller.changeDate(idDoctor, datetoday);controller.ListAppointDoctorApi(idDoctor, datetoday);dateAppoit = "${lastDayOfMonth.year}/${lastDayOfMonth.month}/${lastDayOfMonth.day}";dateAppoit = datetoday;
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -128,7 +102,30 @@ class Appointment_Booking extends StatelessWidget {
                           );
                         }),
                   ),
-
+                  SizedBox(height: 5),
+                  Container(
+                    width: 100,
+                    height: 40,
+                    color: ColorApp.purple38,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          controller.x,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(controller.y,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                  ),
                   SizedBox(height: 30),
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 50),
@@ -136,12 +133,8 @@ class Appointment_Booking extends StatelessWidget {
                     width: 10,
                     height: 2,
                   ),
-
-                  // Text('sssssss',textAlign: TextAlign.center,),
-
                   SizedBox(height: 30),
                   Container(
-                    // decoration: BoxDecoration(border: Border.all(width: 1)),
                     margin: EdgeInsets.all(5),
                     padding: EdgeInsets.all(5),
                     height: 300,
@@ -161,6 +154,7 @@ class Appointment_Booking extends StatelessWidget {
                               ":" +
                               controller.listAppoint[index].startTime!.minute
                                   .toString();
+                          controller.Viewy("${datetime}");
                         },
                         child: Container(
                           width: 50,
@@ -191,7 +185,6 @@ class Appointment_Booking extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   SizedBox(height: 2),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
@@ -199,11 +192,9 @@ class Appointment_Booking extends StatelessWidget {
                       elevation: 25,
                       onPressed: () {
                         showAlertDialog(context);
-                        String x = "${controller.patientEmptyList[0].patientId}";
+                        String x =
+                            "${controller.patientEmptyList[0].patientId}";
                         newAppoitment(idDoctor, datetime, x, dateAppoit);
-
-
-
                       },
                       color: ColorApp.new26,
                       child: Text(
@@ -228,6 +219,7 @@ class Appointment_Booking extends StatelessWidget {
 
   showAlertDialog(BuildContext context) {
     // set up the button
+    MainController _controller = Get.find();
     Widget okButton = TextButton(
       child: Text(
         "تأكيد",
@@ -236,6 +228,7 @@ class Appointment_Booking extends StatelessWidget {
       ),
       onPressed: () {
         Get.to(home());
+        _controller.ClearTimeDate();
       },
     );
 

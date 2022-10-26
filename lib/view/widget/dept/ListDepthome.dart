@@ -15,7 +15,7 @@ class ListDepthome extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       margin: EdgeInsets.symmetric(horizontal: 5),
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.symmetric(vertical: 2),
       width: double.infinity,
       height: 60,
       child: GetBuilder<MainController>(
@@ -42,13 +42,7 @@ class ListDepthome extends StatelessWidget {
                       decoration: index==indexcolors? widgetChangeColors().BoxDecorationChange(true): widgetChangeColors().BoxDecorationChange(false)
                       ,
                       child:index==indexcolors? widgetChangeColors().TextChange( Controller.deptlist[index].departmentName!,true): widgetChangeColors().TextChange( Controller.deptlist[index].departmentName!,false)
-                      // Text(
-                      //   Controller.deptlist[index].departmentName!,
-                      //   style: TextStyle(
-                      //     color:ColorApp.white,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
+
                     ),
                   );
                 },
@@ -59,8 +53,6 @@ class ListDepthome extends StatelessWidget {
   }
 }
 class widgetChangeColors{
-
-
   Text TextChange (String name,bool changeColor){
     return Text(
       name,
@@ -69,7 +61,6 @@ class widgetChangeColors{
         fontWeight: FontWeight.bold,
       ),
     );  }
-
 
 
   BoxDecoration BoxDecorationChange(bool changeColor){
@@ -89,15 +80,3 @@ class widgetChangeColors{
 }
 
 
-// BoxDecoration(
-// boxShadow: [
-// BoxShadow(
-// color: Colors.grey.withOpacity(0.5),
-// spreadRadius: 5,
-// blurRadius: 7,
-// offset:
-// Offset(0, 3), // changes position of shadow
-// ),
-// ],
-// color: ColorApp.new26,
-// borderRadius: BorderRadius.circular(30))

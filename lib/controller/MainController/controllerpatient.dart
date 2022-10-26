@@ -314,38 +314,20 @@ class MainController extends GetxController {
       return null;
   }
 
-// Future<void> _openFacebook() async {
-//   String fbProtocolUrl;
-//   if (Platform.isIOS) {
-//     fbProtocolUrl = 'fb://profile/{your-page-id}';
-//   } else {
-//     fbProtocolUrl = 'fb://page/{your-page-id}';
-//   }
-//
-//   String fallbackUrl = 'https://www.facebook.com/{your-page-uri}';
-//
-//   try {
-//     Uri fbBundleUri = Uri.parse(fbProtocolUrl);
-//     var canLaunchNatively = await canLaunchUrl(fbBundleUri);
-//
-//     if (canLaunchNatively) {
-//       launchUrl(fbBundleUri);
-//     } else {
-//       await launchUrl(Uri.parse(fallbackUrl),
-//           mode: LaunchMode.externalApplication);
-//     }
-//   } catch (e, st) {
-//     // Handle this as you prefer
-//   }
-// }
-
-
-
-
-
-
-
-
-
+  String x="حدد التاريخ";
+  String y="حدد الوقت";
+    Viewx(String data){
+     x=data;
+     update();
+   } Viewy(String data){
+    y=data;
+    update();
+   }
+   ClearTimeDate()
+   {
+     x="حدد التاريخ";
+     y="حدد الوقت";
+     update();
+   }
 
 }
