@@ -16,7 +16,6 @@ class home extends StatefulWidget {
 }
 
 class _home extends State<home> {
-
   @override
   Widget build(BuildContext context) {
     TextEditingController? _searchController;
@@ -25,58 +24,92 @@ class _home extends State<home> {
       child: Scaffold(
         endDrawer: NavigationDrawerWidget(),
         backgroundColor: Colors.redAccent,
-        appBar: AppBar(
-          foregroundColor: ColorApp.nexpurple,
-          title: TextFormField(
-            textAlign: TextAlign.right,
-            controller: _searchController,
-            decoration: InputDecoration(
-              enabled: false,
-              hintText: "اختر القسم الخاص بك",
-              hintStyle: TextStyle(fontSize: 15),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-
-              suffixIcon: Icon(
-                Icons.search_rounded,
-                color: ColorApp.nexpurple,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-          ),
-          backgroundColor: ColorApp.white,
-          elevation: 100.0,
-          shadowColor: ColorApp.nexpurple,
-          centerTitle: true,
-        ),
+        // appBar:
+        // AppBar(
+        //   foregroundColor: ColorApp.nexpurple,
+        //   title: TextFormField(
+        //     textAlign: TextAlign.right,
+        //     controller: _searchController,
+        //     decoration: InputDecoration(
+        //       enabled: false,
+        //       hintText: "اختر القسم الخاص بك",
+        //       hintStyle: TextStyle(fontSize: 15),
+        //       floatingLabelBehavior: FloatingLabelBehavior.always,
+        //       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+        //       suffixIcon: Icon(
+        //         Icons.search_rounded,
+        //         color: ColorApp.nexpurple,
+        //       ),
+        //       border: OutlineInputBorder(
+        //         borderRadius: BorderRadius.circular(30),
+        //       ),
+        //     ),
+        //   ),
+        //   backgroundColor: ColorApp.white,
+        //   elevation: 100.0,
+        //   shadowColor: ColorApp.nexpurple,
+        //   centerTitle: true,
+        // ),
         body: SafeArea(
           child: Container(
             height: double.infinity,
             width: double.infinity,
-            color: ColorApp.white,
+            color: ColorApp.background.withOpacity(1.0),
             child: ListView(children: [
-              Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
+              Container(
+                height: 246,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: ColorApp.new24.withOpacity(0.01),
+                    image: DecorationImage(
+                        image: AssetImage(
+                          "assets/image/appImage.jpg",
+                        ),
+                        fit: BoxFit.cover)),
+                child: Container(padding: EdgeInsets.symmetric(horizontal: 37),
+                  alignment: Alignment(0, 0.6),
+                  child: TextFormField(
+                    textAlign: TextAlign.right,
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      enabled: false,
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
+                      suffixIcon: Icon(Icons.search_rounded, color: ColorApp.nexpurple,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(
+                          width: 100,
+                          style: BorderStyle.solid,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10)),
               SizedBox(height: 20),
               ListDepthome(),
               SizedBox(height: 20),
-              SingleChildScrollView(
-                child: Container(
-                  height: 600,
-                  width: 200,
-                  child: GetBuilder<MainController>(builder: (context) {
-                    return Container(
-                        height: 800,
-                        width: 200,
-                         child:
-                         SpecializationWidgetGridView()
-                        );
-                  }),
-                ),
-              )
-
-
+              // SingleChildScrollView(
+              //   child: Container(
+              //     height: 600,
+              //     width: 200,
+              //     child: GetBuilder<MainController>(builder: (context) {
+              //       return Container(
+              //           height: 800,
+              //           width: 200,
+              //            child:
+              //            SpecializationWidgetGridView()
+              //           );
+              //     }),
+              //   ),
+              // )
             ]),
           ),
         ),
