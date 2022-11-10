@@ -36,13 +36,7 @@ class _home extends State<home> {
               hintStyle: TextStyle(fontSize: 15),
               floatingLabelBehavior: FloatingLabelBehavior.always,
               contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-              // label: Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 9),
-              //   child: Text(
-              //     "بحث",
-              //     style: TextStyle(fontSize: 20, color: ColorApp.nexpurple),
-              //   ),
-              // ),
+
               suffixIcon: Icon(
                 Icons.search_rounded,
                 color: ColorApp.nexpurple,

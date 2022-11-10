@@ -181,28 +181,6 @@ class MainController extends GetxController {
     }
     update();
   }
-  // Future eyadapointment(idAppointment, date) async {
-  //   try {
-  //     var Appointment = await Remote_Services_Appointment.fetchAppointment(date.toString(), idAppointment.toString());  update();
-  //     if (Appointment != null) {
-  //
-  //       appointmentList.value = Appointment.appointment!;
-  //
-  //       update();
-  //
-  //       isLoadingAppointment(false);
-  //       update();
-  //
-  //     }else{
-  //
-  //     }
-  //   } finally {
-  //     isLoadingAppointment(true);
-  //   }
-  //   update();
-  // }
-
-
 
   Future fetceyad() async {
     try {
@@ -313,21 +291,18 @@ class MainController extends GetxController {
     } else
       return null;
   }
+  String choisData= "حدد التاريخ ";
+  String choisTime= "حدد الوقت ";
 
-  String x="حدد التاريخ";
-  String y="حدد الوقت";
-    Viewx(String data){
-     x=data;
-     update();
-   } Viewy(String data){
-    y=data;
+
+  ADDDate( String time){
+    choisData=time;
     update();
-   }
-   ClearTimeDate()
-   {
-     x="حدد التاريخ";
-     y="حدد الوقت";
-     update();
-   }
+  }
+  ADDTime( String time){
+    choisTime=time;
+    update();
+  }
+
 
 }
